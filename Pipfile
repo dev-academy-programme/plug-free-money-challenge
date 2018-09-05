@@ -6,8 +6,8 @@ name = "pypi"
 [dev-packages]
 
 [packages]
-balance_tutorial = {path = ".", editable = true}
-"b07165e" = {path = "./../../plug1/libs/plug-0.0.20", editable = true}
+balance_tutorial = {editable = true, path = "."}
+"9054754" = {path = "./../overview/libs/plug-0.0.20.tar.gz"}
 
 [requires]
 python_version = "3.6"

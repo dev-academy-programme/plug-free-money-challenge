@@ -1,15 +1,14 @@
+from plug.constant import TransactionEvent
 from plug.key import ED25519SigningKey
+from plug.message import Event
+from plug.proof import SingleKeyProof
+from plug.registry import Registry
+from plug.transaction import Transaction
 from plug.util import plug_address
 from plug.hash import sha256
-# from hashlib import sha256
-from plug.proof import SingleKeyProof
-from transform import BalanceTransfer
-from plug.transaction import Transaction
-from plug.constant import TransactionEvent
-from plug.message import Event
-from plug.registry import Registry
-import aiohttp
+from balance_tutorial.transform import BalanceTransfer
 import asyncio
+import aiohttp
 
 class User:
     def __init__(self, signing_key):
@@ -32,10 +31,10 @@ async def main():
     )
 
     challenge = transform.hash(sha256)
-    print(challenge)
+
     proof = SingleKeyProof(bob.address, bob.nonce, challenge, 'balance.tutorial')
     proof.sign(bob.signing_key)
-    print(proof)
+
     transaction = Transaction(transform, {proof.address: proof})
 
     event = Event(
@@ -51,5 +50,6 @@ async def main():
 
     print(data)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

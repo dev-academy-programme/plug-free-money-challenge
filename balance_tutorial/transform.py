@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from plug.abstract import Transform
 
+from balance_tutorial.model import BalanceModel
+
 import balance_tutorial.error
 import balance_tutorial.model
 
@@ -18,7 +20,7 @@ class BalanceTransfer(Transform):
 
     @staticmethod
     def required_models():
-        return {balance_tutorial.model.BalanceModel.fqdn}
+        return {BalanceModel.fqdn}
 
     def required_keys(self):
         return {self.sender, self.receiver}
@@ -49,6 +51,6 @@ class BalanceTransfer(Transform):
             raise balance_tutorial.error.NotEnoughMoneyError("Insufficient funds")
 
     def apply(self, state_slice):
-        balances = state[balance_tutorial.model.BalanceModel.fqdn]
+        balances = state_slice[BalanceModel.fqdn]
         balances[self.sender].balance -= self.amount
         balances[self.receiver].balance += self.amount
