@@ -15,7 +15,17 @@ async def main():
     registry.register(Event)
     registry.register(FreeMoney)
 
-    alice = User(ED25519SigningKey.new())
+    fh = open("user_key.txt", "r")
+    if fh.read() == "":
+        fh = open("user_key.txt", "w")
+        signing_key = ED25519SigningKey.new()
+        fh.write(ED25519SigningKey.to_string(signing_key))
+    else:
+        fh = open("user_key.txt", "r")
+        signing_key = ED25519SigningKey.from_string(fh.read())
+    fh.close()
+
+    alice = User(signing_key)
 
     transform = FreeMoney(
         receiver=alice.address,
@@ -38,7 +48,7 @@ async def main():
         async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
             data = await response.json()
 
-    print(data)
+    # print(data)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())

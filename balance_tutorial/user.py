@@ -1,4 +1,5 @@
 from plug.util import plug_address
+from plug.abstract import Storage
 
 class User:
     def __init__(self, signing_key):
