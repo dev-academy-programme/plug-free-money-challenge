@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "14906e86cb56f75a9bda20de8690fa71cba87029ba761b068f265a7fd3fbf914"
+            "sha256": "1ef992047e5de6cf70f4bed8ed85a99807b5eb73c82d988d9ec3fee14ad3998d"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.6"
+            "python_version": "3.7"
         },
         "sources": [
             {
@@ -16,12 +16,12 @@
         ]
     },
     "default": {
-        "9054754": {
-            "path": "./../overview/libs/plug-0.0.20.tar.gz"
-        },
         "balance-tutorial": {
             "editable": true,
             "path": "."
+        },
+        "ca100b1": {
+            "path": "./../../plug/libs/plug-0.0.20.tar.gz"
         }
     },
     "develop": {}

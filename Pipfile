@@ -7,7 +7,7 @@ name = "pypi"
 
 [packages]
 balance_tutorial = {editable = true, path = "."}
-"9054754" = {path = "./../overview/libs/plug-0.0.20.tar.gz"}
+"ca100b1" = {path = "./../../plug/libs/plug-0.0.20.tar.gz"}
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
