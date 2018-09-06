@@ -19,13 +19,11 @@ async def main():
     user_data = json.load(open("user_data.json", "r"))
 
     if user_data["key"] is "":
-        print("----- NO KEY IN FILE ------")
         user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
         user_data["nonce"] = -1
 
     alice = User(ED25519SigningKey.from_string(user_data["key"]))
 
-    print(user_data)
     user_data["nonce"] += 1
     with open("user_data.json", "w") as write_file:
         json.dump(user_data, write_file)
@@ -51,7 +49,7 @@ async def main():
         async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
             data = await response.json()
 
-    # print(data)
+    print(data)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
