@@ -9,11 +9,11 @@ from plug.hash import sha256
 from balance_tutorial.transform import BalanceTransfer
 import asyncio
 import aiohttp
+import time
 
 class User:
     def __init__(self, signing_key):
         self.signing_key = signing_key
-        self.nonce = 0
         self.address = plug_address(signing_key)
 
 async def main():
@@ -23,6 +23,7 @@ async def main():
 
     bob = User(ED25519SigningKey.new())
     alice = User(ED25519SigningKey.new())
+    nonce = round(time.time() * 100)
 
     transform = BalanceTransfer(
         sender=bob.address,
@@ -32,7 +33,7 @@ async def main():
 
     challenge = transform.hash(sha256)
 
-    proof = SingleKeyProof(bob.address, bob.nonce, challenge, 'balance.tutorial')
+    proof = SingleKeyProof(bob.address, nonce, challenge, 'balance.tutorial')
     proof.sign(bob.signing_key)
 
     transaction = Transaction(transform, {proof.address: proof})
