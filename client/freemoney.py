@@ -7,6 +7,7 @@ from plug.constant import TransactionEvent
 from plug.message import Event
 from plug.registry import Registry
 import aiohttp
+import json
 import asyncio
 from balance_tutorial.user import User
 
@@ -15,17 +16,19 @@ async def main():
     registry.register(Event)
     registry.register(FreeMoney)
 
-    fh = open("user_key.txt", "r")
-    if fh.read() == "":
-        fh = open("user_key.txt", "w")
-        signing_key = ED25519SigningKey.new()
-        fh.write(ED25519SigningKey.to_string(signing_key))
-    else:
-        fh = open("user_key.txt", "r")
-        signing_key = ED25519SigningKey.from_string(fh.read())
-    fh.close()
+    user_data = json.load(open("user_data.json", "r"))
 
-    alice = User(signing_key)
+    if user_data["key"] is "":
+        print("----- NO KEY IN FILE ------")
+        user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
+        user_data["nonce"] = -1
+
+    alice = User(ED25519SigningKey.from_string(user_data["key"]))
+
+    print(user_data)
+    user_data["nonce"] += 1
+    with open("user_data.json", "w") as write_file:
+        json.dump(user_data, write_file)
 
     transform = FreeMoney(
         receiver=alice.address,
@@ -33,7 +36,7 @@ async def main():
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(alice.address, alice.nonce, challenge, 'balance.tutorial')
+    proof = SingleKeyProof(alice.address, user_data["nonce"], challenge, 'balance_tutorial')
     proof.sign(alice.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 

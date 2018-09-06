@@ -26,7 +26,7 @@ async def main():
 
     challenge = transform.hash(sha256)
     print(challenge)
-    proof = SingleKeyProof(bob.address, bob.nonce, challenge, 'balance.tutorial')
+    proof = SingleKeyProof(bob.address, bob.nonce, challenge, 'balance_tutorial')
     proof.sign(bob.signing_key)
     print(proof)
     transaction = Transaction(transform, {proof.address: proof})
