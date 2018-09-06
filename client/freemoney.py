@@ -11,22 +11,24 @@ import json
 import asyncio
 from balance_tutorial.user import User
 
-async def main():
+async def main(signing_key_input):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(FreeMoney)
 
-    user_data = json.load(open("user_data.json", "r"))
+    user_data = {"key": signing_key_input, "nonce": 1}
 
-    if user_data["key"] is "":
-        user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
-        user_data["nonce"] = -1
-
+    # user_data = json.load(open("user_data.json", "r"))
+    #
+    # if user_data["key"] is "":
+    #     user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
+    #     user_data["nonce"] = -1
+    #
     alice = User(ED25519SigningKey.from_string(user_data["key"]))
-
-    user_data["nonce"] += 1
-    with open("user_data.json", "w") as write_file:
-        json.dump(user_data, write_file)
+    #
+    # user_data["nonce"] += 1
+    # with open("user_data.json", "w") as write_file:
+    #     json.dump(user_data, write_file)
 
     transform = FreeMoney(
         receiver=alice.address,
@@ -51,5 +53,5 @@ async def main():
 
     print(data)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(main())
