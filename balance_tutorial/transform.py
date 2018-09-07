@@ -95,3 +95,36 @@ class BalanceTransfer(Transform):
         balances = state_slice[BalanceModel.fqdn]
         balances[self.sender].balance -= self.amount
         balances[self.receiver].balance += self.amount
+
+@dataclass
+class BalanceQuery(Transform):
+    fqdn = "tutorial.BalanceQuery"
+    user: str
+
+    def required_authorizations(self):
+        return {self.user}
+
+    @staticmethod
+    def required_models():
+        return {BalanceModel.fqdn}
+
+    def required_keys(self):
+        return {self.user}
+
+    @staticmethod
+    def pack(registry, obj):
+        return {
+            "user": obj.user,
+        }
+
+    @classmethod
+    def unpack(cls, registry, payload):
+        return cls(
+            user=payload["user"],
+        )
+
+    def verify(self, state_slice):
+        balance = state_slice[BalanceModel.fqdn]
+
+    def apply(self, state_slice):
+        balance = state_slice[BalanceModel.fqdn]

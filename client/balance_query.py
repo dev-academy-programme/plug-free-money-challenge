@@ -1,7 +1,7 @@
 from plug.key import ED25519SigningKey
 from plug.hash import sha256
 from plug.proof import SingleKeyProof
-from balance_tutorial.transform import FreeMoney
+from balance_tutorial.transform import BalanceQuery
 from plug.transaction import Transaction
 from plug.constant import TransactionEvent
 from plug.message import Event
@@ -14,30 +14,28 @@ from balance_tutorial.user import User
 async def main(signing_key_input):
     registry = Registry().with_default()
     registry.register(Event)
-    registry.register(FreeMoney)
+    registry.register(BalanceQuery)
 
     user_data = json.load(open("user_data.json", "r"))
 
-    if signing_key_input in data_json.keys():
-        user_nonce = user_data[signing_key_input]["nonce"];
+    if signing_key_input in user_data.keys():
+        user_data[signing_key_input]["nonce"] += 1;
     else:
-        user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
-        user_data["nonce"] = -1
+        print("user signing key not found")
+        return
 
-    alice = User(ED25519SigningKey.from_string(user_data["key"]))
-    #
-    # user_data["nonce"] += 1
-    # with open("user_data.json", "w") as write_file:
-    #     json.dump(user_data, write_file)
+    with open("user_data.json", "w") as write_file:
+        json.dump(user_data, write_file)
 
-    transform = FreeMoney(
-        receiver=alice.address,
-        amount=1000,
+    user = User(ED25519SigningKey.from_string(signing_key_input))
+
+    transform = BalanceQuery(
+        user=user.address,
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(alice.address, user_data["nonce"], challenge, 'balance_tutorial')
-    proof.sign(alice.signing_key)
+    proof = SingleKeyProof(user.address, user_data[signing_key_input]["nonce"], challenge, 'balance_tutorial')
+    proof.sign(user.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 
     event = Event(
@@ -52,6 +50,3 @@ async def main(signing_key_input):
             data = await response.json()
 
     print(data)
-
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(main())
