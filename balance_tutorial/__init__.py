@@ -16,6 +16,7 @@ class BalanceTutorialPlugin(Plugin):
             balance_tutorial.transform.BalanceTransfer,
             balance_tutorial.transform.BalanceQuery,
             balance_tutorial.transform.FreeMoney,
+            balance_tutorial.transform.CreateUser,
         ]
 
         for component in components:
