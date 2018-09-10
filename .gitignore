@@ -1,7 +1,7 @@
 ### plug ###
 tmp*.py
 *.yaml
-nodes
+nodes/
 *.benchmark
 plug/dashboard/config.json
 
