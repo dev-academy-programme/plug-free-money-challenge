@@ -17,27 +17,29 @@ async def main(signing_key_input):
     registry.register(FreeMoney)
 
     user_data = json.load(open("user_data.json", "r"))
+    user_obj = None
 
-    if signing_key_input in data_json.keys():
-        user_nonce = user_data[signing_key_input]["nonce"];
-    else:
-        user_data["key"] = ED25519SigningKey.to_string(ED25519SigningKey.new())
-        user_data["nonce"] = -1
+    for i, user in enumerate(user_data["users"]):
+        if user_data["users"][i]["key"] == signing_key_input:
+            user_data["users"][i]["nonce"] += 1;
+            user_obj = user_data["users"][i]
+            with open("user_data.json", "w") as write_file:
+                json.dump(user_data, write_file)
 
-    alice = User(ED25519SigningKey.from_string(user_data["key"]))
-    #
-    # user_data["nonce"] += 1
-    # with open("user_data.json", "w") as write_file:
-    #     json.dump(user_data, write_file)
+    if user_obj == None:
+        print("no user found with that key")
+        return
+
+    user = User(ED25519SigningKey.from_string(signing_key_input))
 
     transform = FreeMoney(
-        receiver=alice.address,
+        receiver=user.address,
         amount=1000,
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(alice.address, user_data["nonce"], challenge, 'balance_tutorial')
-    proof.sign(alice.signing_key)
+    proof = SingleKeyProof(user.address, user_obj["nonce"], challenge, 'balance_tutorial')
+    proof.sign(user.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 
     event = Event(

@@ -1,6 +1,6 @@
 import click
 import asyncio
-from freemoney import main
+from free_money import main
 
 @click.command()
 @click.option('--signing_key', prompt='Enter a user signing key',
