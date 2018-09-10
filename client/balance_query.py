@@ -17,15 +17,18 @@ async def main(signing_key_input):
     registry.register(BalanceQuery)
 
     user_data = json.load(open("user_data.json", "r"))
+    user_obj = None
 
-    if signing_key_input in user_data.keys():
-        user_data[signing_key_input]["nonce"] += 1;
-    else:
-        print("user signing key not found")
+    for i, user in enumerate(user_data["users"]):
+        if user_data["users"][i]["key"] == signing_key_input:
+            user_data["users"][i]["nonce"] += 1;
+            user_obj = user_data["users"][i]
+            with open("user_data.json", "w") as write_file:
+                json.dump(user_data, write_file)
+
+    if user_obj == None:
+        print("no user found with that key")
         return
-
-    with open("user_data.json", "w") as write_file:
-        json.dump(user_data, write_file)
 
     user = User(ED25519SigningKey.from_string(signing_key_input))
 
@@ -34,7 +37,7 @@ async def main(signing_key_input):
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user_data[signing_key_input]["nonce"], challenge, 'balance_tutorial')
+    proof = SingleKeyProof(user.address, user_obj["nonce"], challenge, 'balance_tutorial')
     proof.sign(user.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 
