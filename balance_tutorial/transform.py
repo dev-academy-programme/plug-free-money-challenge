@@ -98,7 +98,7 @@ class BalanceTransfer(Transform):
 
 @dataclass
 class CreateUser(Transform):
-    fqdn = "tutorial.BalanceTransfer"
+    fqdn = "tutorial.CreateUser"
     user: str
 
     def required_authorizations(self):
@@ -127,7 +127,9 @@ class CreateUser(Transform):
         print("verify")
 
     def apply(self, state_slice):
-        print("apply")
+        print('-----------')
+        print('NEW USER CREATED!')
+        print('-----------')
 
 
 @dataclass
