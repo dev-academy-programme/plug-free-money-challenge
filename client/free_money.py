@@ -54,6 +54,3 @@ async def main(signing_key_input):
             data = await response.json()
 
     print(data)
-
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(main())

@@ -161,4 +161,8 @@ class BalanceQuery(Transform):
         balance = state_slice[BalanceModel.fqdn]
 
     def apply(self, state_slice):
-        balance = state_slice[BalanceModel.fqdn]
+        balances = state_slice[BalanceModel.fqdn]
+        print('-----------')
+        print('USER BALANCE: ')
+        print(balances[self.user].balance)
+        print('-----------')
