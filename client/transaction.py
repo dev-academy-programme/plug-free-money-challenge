@@ -11,7 +11,7 @@ import aiohttp
 import asyncio
 import json
 
-async def main(sender_key_input, receiver_key_input, amount):
+async def init_transaction(sender_key_input, receiver_key_input, amount):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(BalanceTransfer)

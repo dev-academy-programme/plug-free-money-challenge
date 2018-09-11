@@ -11,7 +11,7 @@ import aiohttp
 import json
 import asyncio
 
-async def main(signing_key_input):
+async def init_free_money(signing_key_input):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(FreeMoney)

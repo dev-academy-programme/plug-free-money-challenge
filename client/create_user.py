@@ -11,7 +11,7 @@ import aiohttp
 import json
 import asyncio
 
-async def main():
+async def init_create_user():
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(CreateUser)

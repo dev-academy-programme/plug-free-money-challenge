@@ -11,7 +11,7 @@ import json
 import asyncio
 from balance_tutorial.user import User
 
-async def main(signing_key_input):
+async def init_balance_query(signing_key_input):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(BalanceQuery)
