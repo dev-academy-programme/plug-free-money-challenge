@@ -5,6 +5,7 @@ nodes/*
 nodes/
 *.benchmark
 plug/dashboard/config.json
+Pipfile
 
 ### Linux ###
 *~
