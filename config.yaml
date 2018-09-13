@@ -4,6 +4,9 @@ plug:
   registry:
     plugins:
     - balance_tutorial.BalanceTutorialPlugin
+  indexers:
+    _state:
+    - balance_tutorial.indexer.BalanceIndexer
   storage:
     class: plug.storage.sqlite.SqliteStorage
     path: db.sqlite

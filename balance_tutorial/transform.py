@@ -125,8 +125,8 @@ class CreateUser(Transform):
 
     def verify(self, state_slice):
         print("verify")
+    
 
     def apply(self, state_slice):
-        print('-----------')
-        print('NEW USER CREATED!')
-        print('-----------')
+        balances = state_slice[BalanceModel.fqdn]
+        balances[self.user].balance = 100
