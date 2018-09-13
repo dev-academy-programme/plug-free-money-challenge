@@ -4,24 +4,26 @@ Balance Tutorial
 ## INTRODUCTION TO PLUG AND TRANSFORMS
 
 ### OBJECTIVES
-- Create a Transform that adds a new user to the blockchain.
-- Create a Transform that can query the balance of a User
+- Create a function that adds a new user to the blockchain.
+- Create a function that can query the balance of a specific User.
 - Create a Transform that adds free money to a specific Users balance.
 - Create a Transform that can transfer money between two Users
 
-### ROUGH OUTLINE
--  Create a new FreeMoney class in `transform.py` that inherits from `Transform`.
--  Specify which parts of the model will be transformed, and write the required methods.
--  Add the new FreeMoney transform as an included component in the `__init__.py` script for inclusion in the registry.
--  Write client side code that retrieves a User by their `signing_key`.
--  Transform the User model using the FreeMoney class.
--  Record the transformation event into the registry.
--  Post the event up to the API and verify its success.
+#### OBJECTIVE: CREATING A USER.
 
-#### STEP 1: Write the CreateUser class in `transform.py`
+##### Step One: Writing the User class in `user.py`.
 
-The first Transform we're going to write is for creating a new User.
-The CreateUser class inherits from Transform, and has several required methods.
+The first step in creating a new User takes place over in `user.py`. There are three methods in here that need fleshing out.
+
+First, the `__init__(self)` method must define some properties of this new User class. The user `signing_key`, `address` and `nonce` must all be defined.  
+
+Next, the `load(signing_key)` method: it must be able to take a new `signing_key` argument, create a new instance of the User class, assign its properties, then return the new user object.
+
+Finally, we need a function to get the current nonce of the User. Read the API docs on issuing GET requests on the NonceModel. IE: `http://localhost:8181/_api/v1/state/-1/plug.model.NonceModel/ ... `.
+
+##### Step Two: Writing the client code in `create_user.py`.
+
+Write the `_init_create_user()` function in `create_user.py`. This is an extremely brief operation. Simply create a new `User()` instance using the code you wrote in `user.py`, and log all the User info into the terminal. 
 
 ```
 @dataclass
