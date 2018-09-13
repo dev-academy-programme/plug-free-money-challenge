@@ -9,6 +9,8 @@ Balance Tutorial
 
 #### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
+First, we're going to create a new FreeMoney class that extends Transform. This transform will allow us to give some free money to a specific user.
+
 ##### Step One: Generating a User.
 
 Before we can start handing out any free money, we'll need someone to give it to. Navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information in your console.
@@ -110,3 +112,9 @@ async def init_free_money(signing_key_input):
 Try running `python client.py free_money` from your client directory. After POST-ing the entire affair to the Plug API, you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client.py balance_query` again with the same `signing_key` and their balance should have increased significantly.
 
 Congratulations! You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented for financial reasons._
+
+#### OBJECTIVE: CREATE A TRANSACTION TRANSFORM
+
+Now that we can give users money, we're going to write a new Transaction class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
+
+##### Step One: Generating a User.
