@@ -6,7 +6,7 @@ from plug.transaction import Transaction
 from plug.constant import TransactionEvent
 from plug.message import Event
 from plug.registry import Registry
-from balance_tutorial.user import User
+from user import User
 import aiohttp
 import json
 import asyncio

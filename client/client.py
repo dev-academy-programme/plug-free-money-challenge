@@ -4,7 +4,6 @@ from free_money import init_free_money
 from transaction import init_transaction
 import click
 import asyncio
-import asyncio
 
 @click.command()
 @click.argument('arg')
@@ -16,8 +15,7 @@ def init(arg):
         return
 
     if arg == 'create_user':
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_create_user())
+        init_create_user()
         return
 
     if arg == 'free_money':
@@ -28,10 +26,10 @@ def init(arg):
 
     if arg == 'transaction':
         sender_input_key = click.prompt("please enter the sender signing key",)
-        receiver_input_key = click.prompt("please enter the receiver signing key",)
+        receiver_address = click.prompt("please enter the receiver address",)
         amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_transaction(sender_input_key, receiver_input_key, amount))
+        loop.run_until_complete(init_transaction(sender_input_key, receiver_address, amount))
         return
 
     else:
