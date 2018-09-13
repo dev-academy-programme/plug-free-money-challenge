@@ -1,6 +1,5 @@
 ### plug ###
 tmp*.py
-*.yaml
 nodes/*
 nodes/
 *.benchmark

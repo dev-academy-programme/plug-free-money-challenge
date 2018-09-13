@@ -1,0 +1,10 @@
+plug:
+  network_id: balance.tutorial
+  max_block_size: 1000
+  registry:
+    plugins:
+    - balance_tutorial.BalanceTutorialPlugin
+  storage:
+    class: plug.storage.sqlite.SqliteStorage
+    path: db.sqlite
+    store_n_states: 10
