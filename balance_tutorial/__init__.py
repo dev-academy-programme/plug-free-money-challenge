@@ -14,7 +14,6 @@ class BalanceTutorialPlugin(Plugin):
             balance_tutorial.error.InvalidAmountError,
             balance_tutorial.model.BalanceModel,
             balance_tutorial.transform.BalanceTransfer,
-            balance_tutorial.transform.BalanceQuery,
             balance_tutorial.transform.FreeMoney,
             balance_tutorial.transform.CreateUser,
         ]
