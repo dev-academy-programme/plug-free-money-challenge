@@ -45,7 +45,7 @@ async def init_transaction(sender_key_input, receiver_key_input, amount):
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(sender.address, sender_user_obj["nonce"], challenge, 'balance_tutorial')
+    proof = SingleKeyProof(sender.address, sender_user_obj["nonce"], challenge, 'balance.tutorial')
     proof.sign(sender.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 

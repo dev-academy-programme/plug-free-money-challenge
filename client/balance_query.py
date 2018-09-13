@@ -37,7 +37,7 @@ async def init_balance_query(signing_key_input):
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user_obj["nonce"], challenge, 'balance_tutorial')
+    proof = SingleKeyProof(user.address, user_obj["nonce"], challenge, 'balance.tutorial')
     proof.sign(user.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 
