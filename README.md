@@ -15,11 +15,11 @@ First, we're going to create a new FreeMoney class that extends Transform. This 
 
 Before we can start handing out any free money, we'll need someone to give it to. Navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information in your console.
 
-Make sure to keep a copy of that `signing_key`. We'll use it in all of the future transforms to interact with the User.
+Remember to keep a copy of the new User's `address` and `signing_key`. You will need these later! We'll use them to transform and query the blockchain.
 
 ##### Step Two: Checking their balance.
 
-All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `signing_key` from earlier when prompted. This should print the User balance in your log.
+All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `address` from earlier when prompted. This should print the User balance in your log.
 
 ##### Step Three: Writing the FreeMoney transform.
 
@@ -119,6 +119,36 @@ Now that we can give users money, we're going to write a new BalanceTransfer cla
 
 ##### Step One: Generating another User.
 
-There must be multiple Users within the blockchain to allow the transfer of money back and forth. Run `python client.py create_user` from your client directory again. Remember to keep a copy of the new User's `signing_key`.
+There must be multiple Users within the blockchain to allow the transfer of money back and forth. Run `python client.py create_user` from your client directory again. Remember to keep a copy of the new User's `address` and `signing_key`.
 
 ##### Step Two: Writing the BalanceTransfer transform.
+
+Once again it's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_.
+
+```
+@dataclass
+class BalanceTransfer(Transform):
+    fqdn = "tutorial.BalanceTransfer"
+    sender: str
+    receiver: str
+    amount: int
+
+    def required_authorizations(self):
+
+    @staticmethod
+    def required_models():
+
+    def required_keys(self):
+
+    @staticmethod
+    def pack(registry, obj):
+
+    @classmethod
+    def unpack(cls, registry, payload):
+
+    def verify(self, state_slice):
+
+    def apply(self, state_slice):
+```
+
+Once again,
