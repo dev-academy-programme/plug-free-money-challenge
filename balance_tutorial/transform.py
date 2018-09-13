@@ -124,9 +124,5 @@ class CreateUser(Transform):
         )
 
     def verify(self, state_slice):
-        print("verify")
 
     def apply(self, state_slice):
-        print('-----------')
-        print('NEW USER CREATED!')
-        print('-----------')
