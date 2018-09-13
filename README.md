@@ -113,14 +113,12 @@ Try running `python client.py free_money` from your client directory. After POST
 
 Congratulations! You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented for financial reasons._
 
-#### OBJECTIVE: CREATE A TRANSACTION TRANSFORM
+#### OBJECTIVE: CREATE A BALANCE TRANSFER TRANSFORM
 
-Now that we can give users money, we're going to write a new Transaction class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
+Now that we can give users money, we're going to write a new BalanceTransfer class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
 
 ##### Step One: Generating another User.
 
 There must be multiple Users within the blockchain to allow the transfer of money back and forth. Run `python client.py create_user` from your client directory again. Remember to keep a copy of the new User's `signing_key`.
 
-##### Step Two: Checking their balance.
-
-All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `signing_key` from earlier when prompted. This should print the User balance in your log.
+##### Step Two: Writing the BalanceTransfer transform.
