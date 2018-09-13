@@ -6,49 +6,6 @@ from balance_tutorial.model import BalanceModel
 import balance_tutorial.error
 import balance_tutorial.model
 
-# Define your plugin's transforms here.
-
-@dataclass
-class FreeMoney(Transform):
-    fqdn = "tutorial.FreeMoney"
-    receiver: str
-    amount: int
-
-    def required_authorizations(self):
-        return {self.receiver}
-
-    @staticmethod
-    def required_models():
-        return {BalanceModel.fqdn}
-
-    def required_keys(self):
-        return {self.receiver}
-
-    @staticmethod
-    def pack(registry, obj):
-        return {
-            "receiver": obj.receiver,
-            "amount": obj.amount,
-        }
-
-    @classmethod
-    def unpack(cls, registry, payload):
-        return cls(
-            receiver=payload["receiver"],
-            amount=payload["amount"],
-        )
-
-    def verify(self, state_slice):
-        balances = state_slice[BalanceModel.fqdn]
-
-        if self.amount <= 0:
-            raise balance_tutorial.error.InvalidAmountError("Transfer amount must be more than 0")
-
-    def apply(self, state_slice):
-        balances = state_slice[BalanceModel.fqdn]
-        balances[self.receiver].balance += self.amount
-
-
 @dataclass
 class BalanceTransfer(Transform):
     fqdn = "tutorial.BalanceTransfer"
@@ -97,36 +54,42 @@ class BalanceTransfer(Transform):
         balances[self.receiver].balance += self.amount
 
 @dataclass
-class CreateUser(Transform):
-    fqdn = "tutorial.CreateUser"
-    user: str
+class FreeMoney(Transform):
+    fqdn = "tutorial.FreeMoney"
+    receiver: str
+    amount: int
 
     def required_authorizations(self):
-        return {self.user}
+        return {self.receiver}
 
     @staticmethod
     def required_models():
         return {BalanceModel.fqdn}
 
     def required_keys(self):
-        return {self.user}
+        return {self.receiver}
 
     @staticmethod
     def pack(registry, obj):
         return {
-            "user": obj.user,
+            "receiver": obj.receiver,
+            "amount": obj.amount,
         }
 
     @classmethod
     def unpack(cls, registry, payload):
         return cls(
-            user=payload["user"],
+            receiver=payload["receiver"],
+            amount=payload["amount"],
         )
 
     def verify(self, state_slice):
-        print("verify")
-    
+        balances = state_slice[BalanceModel.fqdn]
+
+        if self.amount <= 0:
+            raise balance_tutorial.error.InvalidAmountError("Transfer amount must be more than 0")
 
     def apply(self, state_slice):
         balances = state_slice[BalanceModel.fqdn]
-        balances[self.user].balance = 100
+        balances[self.receiver].balance += self.amount
+
