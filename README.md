@@ -11,7 +11,7 @@ Balance Tutorial
 
 ##### Step One: Generating a User.
 
-Before we can start handing out any free money we'll need someone to give it to. Navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information in your console.
+Before we can start handing out any free money, we'll need someone to give it to. Navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information in your console.
 
 Make sure to keep a copy of that `signing_key`. We'll use it in all of the future transforms to interact with the User.
 
@@ -74,22 +74,17 @@ Head over to `free_money.py`. The first step here is going to be getting a refer
 
 Once you have a reference to the correct user, it's time to apply the FreeMoney transform you wrote in `transform.py`. Don't forget to pass in the `receiver` and `amount` arguments.
 
-
-
-
+The rest of this client code in `free_money.py` is fairly boilerplate, and won't differ too much from transform to transform. For more information on challenges, proofs and transactions, please refer to the Plug documentation:
 
 ```
 async def init_free_money(signing_key_input):
-    registry = Registry().with_default()
-    registry.register(Event)
-    registry.register(FreeMoney)
 
-    user = await User.load(signing_key_input)
+    # registry = ...
 
-    transform = FreeMoney(
-        receiver=user.address,
-        amount=1000,
-    )
+    # user = ...
+
+    # transform = ...
+
 
     challenge = transform.hash(sha256)
     proof = SingleKeyProof(user.address, user.nonce, challenge, 'balance.tutorial')
@@ -109,3 +104,7 @@ async def init_free_money(signing_key_input):
 
     print(data)
 ```
+
+Try running `python client.py free_money` from your client directory. After POST-ing the entire affair to the Plug API, you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client.py balance_query` again with the same `signing_key` and their balance should have increased significantly.
+
+Congratulations! You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented for financial reasons._
