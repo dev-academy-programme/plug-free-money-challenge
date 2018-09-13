@@ -55,4 +55,57 @@ Then, most important of all, in the `apply(self, state_slice)` method, the actua
 
 Once you have that `balances[]` reference, you can use the address of the the `self.receiver` as an index and increment their balance by the desired amount.
 
-##### Step Four: Writing the FreeMoney .
+##### Step Four: Add the FreeMoney transform to your components array.
+
+Over in `__init.py__` there is an array of components to include in this Plugin. Make sure you _add your new FreeMoney transform to this list_: `balance_tutorial.transform.FreeMoney,`
+
+```
+  components = [
+      # Include your plugin's models/transforms/errors etc here.
+      balance_tutorial.error.NotEnoughMoneyError,
+      balance_tutorial.error.InvalidAmountError,
+      balance_tutorial.model.BalanceModel,
+  ]
+```
+
+##### Step Five: Writing the FreeMoney client.
+
+Head over to `free_money.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have a `signing_key_input` argument to retrieve the correct user object. This is going to require using the `User.load()` function. If you haven't already, go read `user.py` and make sure you understand exactly what going on there.
+
+Once you have a reference to the correct user, it's time to apply the FreeMoney transform you wrote in `transform.py`. Don't forget to pass in the `receiver` and `amount` arguments.
+
+
+
+
+
+```
+async def init_free_money(signing_key_input):
+    registry = Registry().with_default()
+    registry.register(Event)
+    registry.register(FreeMoney)
+
+    user = await User.load(signing_key_input)
+
+    transform = FreeMoney(
+        receiver=user.address,
+        amount=1000,
+    )
+
+    challenge = transform.hash(sha256)
+    proof = SingleKeyProof(user.address, user.nonce, challenge, 'balance.tutorial')
+    proof.sign(user.signing_key)
+    transaction = Transaction(transform, {proof.address: proof})
+
+    event = Event(
+        event=TransactionEvent.ADD,
+        payload=transaction
+    )
+
+    payload = registry.pack(event)
+
+    async with aiohttp.ClientSession() as session:
+        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
+            data = await response.json()
+
+    print(data)
+```
