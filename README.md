@@ -21,7 +21,7 @@ All users are created equal in this blockchain. When a new User is added, they r
 
 ##### Step Three: Writing the FreeMoney transform.
 
-Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, and has several required methods to work correctly. Check out the plug documentation for a reference on writing Transforms.
+Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, and has several required methods to work correctly. *Check out the plug documentation for a reference on writing Transforms.*
 
 ```
 @dataclass
@@ -54,6 +54,8 @@ This is actually a very simple transform. Essentially there are only two things 
 Then, most important of all, in the `apply(self, state_slice)` method, the actual transformation needs to take place. This will require referencing a `balances` object from the `state_slice[]`, and using your `BalanceModel.fqdn` as the indexer.
 
 Once you have that `balances[]` reference, you can use the address of the the `self.receiver` as an index and increment their balance by the desired amount.
+
+You still need to flesh out the other required methods too, but they are fairly standard. Remember to  *Check out the plug documentation for a reference on writing Transforms.*
 
 ##### Step Four: Add the FreeMoney transform to your components array.
 
