@@ -117,4 +117,10 @@ Congratulations! You have successfully written a Transform that gives unlimited,
 
 Now that we can give users money, we're going to write a new Transaction class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
 
-##### Step One: Generating a User.
+##### Step One: Generating another User.
+
+There must be multiple Users within the blockchain to allow the transfer of money back and forth. Run `python client.py create_user` from your client directory again. Remember to keep a copy of the new User's `signing_key`.
+
+##### Step Two: Checking their balance.
+
+All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `signing_key` from earlier when prompted. This should print the User balance in your log.
