@@ -12,44 +12,11 @@ import asyncio
 from balance_tutorial.user import User
 
 async def init_balance_query(signing_key_input):
-    registry = Registry().with_default()
-    registry.register(Event)
-    registry.register(BalanceQuery)
-
-    user_data = json.load(open("user_data.json", "r"))
-    user_obj = None
-
-    for i, user in enumerate(user_data["users"]):
-        if user_data["users"][i]["key"] == signing_key_input:
-            user_data["users"][i]["nonce"] += 1;
-            user_obj = user_data["users"][i]
-            with open("user_data.json", "w") as write_file:
-                json.dump(user_data, write_file)
-
-    if user_obj == None:
-        print("no user found with that key")
-        return
 
     user = User(ED25519SigningKey.from_string(signing_key_input))
 
-    transform = BalanceQuery(
-        user=user.address,
-    )
-
-    challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user_obj["nonce"], challenge, 'balance.tutorial')
-    proof.sign(user.signing_key)
-    transaction = Transaction(transform, {proof.address: proof})
-
-    event = Event(
-        event=TransactionEvent.ADD,
-        payload=transaction
-    )
-
-    payload = registry.pack(event)
-
     async with aiohttp.ClientSession() as session:
-        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
+        async with session.get("http://localhost:8181/_api/v1/state/-1/tutorial.BalanceModel/" + user.address) as response:
             data = await response.json()
 
     print(data)
