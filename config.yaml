@@ -3,10 +3,10 @@ plug:
   max_block_size: 1000
   registry:
     plugins:
-    - free_money_challenge.FreeMoneyPlugin
+    - free_money.FreeMoneyPlugin
   indexers:
     _state:
-    - free_money_challenge.indexer.BalanceIndexer
+    - free_money.indexer.BalanceIndexer
   storage:
     class: plug.storage.sqlite.SqliteStorage
     path: db.sqlite

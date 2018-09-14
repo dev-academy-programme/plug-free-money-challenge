@@ -8,9 +8,9 @@ from plug.util import plug_address
 from plug.util import prepare_state_slice
 from plug.util import sha256
 
-import free_money_challenge.error
-import free_money_challenge.model
-import free_money_challenge.transform
+import free_money.error
+import free_money.model
+import free_money.transform
 
 
 class User:

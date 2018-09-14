@@ -4,10 +4,10 @@ plug:
 
   registry:
     plugins:
-    - free_money_challenge.__init__.FreeMoneyPlugin
+    - free_money.__init__.FreeMoneyPlugin
 
   initial_state:
-    free_money_challenge.model.BalanceModel:
+    free_money.model.BalanceModel:
       1Ax9pA92ZAeziwGfmG5qGSgZRZT9nbX3or:
           balance: 100
       12z3kokcMpB6a7RrCMzcYDryZk4V96gKgz:

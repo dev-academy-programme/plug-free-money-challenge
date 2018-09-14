@@ -1,6 +1,6 @@
 from plug.hash import sha256
 from plug.proof import SingleKeyProof
-from free_money_challenge.transform import BalanceTransfer
+from free_money.transform import BalanceTransfer
 from plug.transaction import Transaction
 from plug.constant import TransactionEvent
 from plug.message import Event
