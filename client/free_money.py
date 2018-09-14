@@ -12,31 +12,5 @@ import json
 import asyncio
 
 async def init_free_money(signing_key_input):
-    registry = Registry().with_default()
-    registry.register(Event)
-    registry.register(FreeMoney)
 
-    user = await User.load(signing_key_input)
-
-    transform = FreeMoney(
-        receiver=user.address,
-        amount=1000,
-    )
-
-    challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user.nonce, challenge, 'challenge.FreeMoney')
-    proof.sign(user.signing_key)
-    transaction = Transaction(transform, {proof.address: proof})
-
-    event = Event(
-        event=TransactionEvent.ADD,
-        payload=transaction
-    )
-
-    payload = registry.pack(event)
-
-    async with aiohttp.ClientSession() as session:
-        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
-            data = await response.json()
-
-    print(data)
+    print("Free Money!")
