@@ -1,6 +1,6 @@
 from plug.hash import sha256
 from plug.proof import SingleKeyProof
-from balance_tutorial.transform import BalanceTransfer
+from free_money_challenge.transform import BalanceTransfer
 from plug.transaction import Transaction
 from plug.constant import TransactionEvent
 from plug.message import Event
@@ -24,7 +24,7 @@ async def init_transaction(sender_key_input, receiver_address, amount):
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(sender.address, sender.nonce, challenge, 'balance.tutorial')
+    proof = SingleKeyProof(sender.address, sender.nonce, challenge, 'challenge.FreeMoney')
     proof.sign(sender.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 

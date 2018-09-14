@@ -24,6 +24,18 @@
 
 1. Head over to http://localhost:8181/_swagger and make sure the server has spun up properly.
 
+```
+
+       _
+ _ __ | |_   _  __ _
+| '_ \| | | | |/ _` |
+| |_) | | |_| | (_| |
+| .__/|_|\__,_|\__, |
+|_|            |___/   
+
+
+```
+
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
 First, we're going to create a new FreeMoney class that extends Transform. This transform will allow us to give some free money to a specific user.
@@ -56,7 +68,7 @@ Over in `__init.py__` there is an array of components to include in this Plugin.
   components = [
       # Include your plugins
       ...
-      balance_tutorial.transform.FreeMoney,
+      free_money_challenge.transform.FreeMoney,
   ]
 ```
 
@@ -96,8 +108,8 @@ Back in `__init.py__` you must remember to _add your new transform to this list_
 components = [
 # Include your plugin's
 ...
-balance_tutorial.transform.FreeMoney,
-balance_tutorial.transform.BalanceTransfer,
+free_money_challenge.transform.FreeMoney,
+free_money_challenge.transform.BalanceTransfer,
 ]
 ```
 

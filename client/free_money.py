@@ -1,7 +1,7 @@
 from plug.key import ED25519SigningKey
 from plug.hash import sha256
 from plug.proof import SingleKeyProof
-from balance_tutorial.transform import FreeMoney
+from free_money_challenge.transform import FreeMoney
 from plug.transaction import Transaction
 from plug.constant import TransactionEvent
 from plug.message import Event
@@ -24,7 +24,7 @@ async def init_free_money(signing_key_input):
     )
 
     challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user.nonce, challenge, 'balance.tutorial')
+    proof = SingleKeyProof(user.address, user.nonce, challenge, 'challenge.FreeMoney')
     proof.sign(user.signing_key)
     transaction = Transaction(transform, {proof.address: proof})
 
