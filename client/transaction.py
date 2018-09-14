@@ -15,8 +15,6 @@ async def init_transaction(sender_key_input, receiver_address, amount):
     registry.register(Event)
     registry.register(BalanceTransfer)
 
-    user_data = json.load(open("user_data.json", "r"))
-
     sender = await User.load(sender_key_input)
 
     transform = BalanceTransfer(

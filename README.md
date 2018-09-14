@@ -25,35 +25,9 @@ All users are created equal in this blockchain. When a new User is added, they r
 
 Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, and has several required methods to work correctly. *Check out the plug documentation for a reference on writing Transforms.*
 
-```
-@dataclass
-class FreeMoney(Transform):
-    fqdn = "tutorial.FreeMoney"
-    receiver: str
-    amount: int
+This is actually a very simple transform. Essentially there are only two things you need to check for. In the `verify()` method, you need to _verify_ that the amount you are trying to add to the User's balance is _greater than 0._
 
-    def required_authorizations(self):
-
-    @staticmethod
-    def required_models():
-
-    def required_keys(self):
-
-    @staticmethod
-    def pack(registry, obj):
-
-    @classmethod
-    def unpack(cls, registry, payload):
-
-    def verify(self, state_slice):
-
-    def apply(self, state_slice):
-
-```
-
-This is actually a very simple transform. Essentially there are only two things you need to check for. In the `verify(self, state_slice)` method, you need to _verify_ that the amount you are trying to add to the User's balance is _greater than 0._
-
-Then, most important of all, in the `apply(self, state_slice)` method, the actual transformation needs to take place. This will require referencing a `balances` object from the `state_slice[]`, and using your `BalanceModel.fqdn` as the indexer.
+Then, most important of all, in the `apply()` method, the actual transformation needs to take place. This will require referencing a `balances` object from the `state_slice[]`, and using your `BalanceModel.fqdn` as the indexer.
 
 Once you have that `balances[]` reference, you can use the address of the the `self.receiver` as an index and increment their balance by the desired amount.
 
@@ -61,14 +35,13 @@ You still need to flesh out the other required methods too, but they are fairly 
 
 ##### Step Four: Add the FreeMoney transform to your components array.
 
-Over in `__init.py__` there is an array of components to include in this Plugin. Make sure you _add your new FreeMoney transform to this list_: `balance_tutorial.transform.FreeMoney,`
+Over in `__init.py__` there is an array of components to include in this Plugin. Make sure you _add your new FreeMoney transform to this list_:
 
 ```
   components = [
-      # Include your plugin's models/transforms/errors etc here.
-      balance_tutorial.error.NotEnoughMoneyError,
-      balance_tutorial.error.InvalidAmountError,
-      balance_tutorial.model.BalanceModel,
+      # Include your plugin's
+      ...
+      balance_tutorial.transform.FreeMoney,
   ]
 ```
 
@@ -100,4 +73,25 @@ Once again it's time to head over to `transform.py`. Define a new `BalanceTransf
 
 Just like in the FreeMoney transform, the real logic takes place in the `verify()` and `apply()` methods. In `verify()`, you need to make sure that the sender actually _has_ a sufficient balance to cover the transfer, and then in `apply()` you will alter the user balances.
 
-##### Step Three: Writing the BalanceTransfer client code:
+##### Step Three: Writing the BalanceTransfer client code.
+
+In `transaction.py`, the `init_transaction(sender_key_input, receiver_address, amount)` function will receive all the required arguments from the terminal.
+
+Using your `free_money.py` code as a rough template, write all the necessary code for this transaction to occur.
+
+##### Step Four: Add the BalanceTransfer class to your components array.
+
+Back in `__init.py__` you must remember to _add your new transform to this list_:
+
+```
+  components = [
+      # Include your plugin's
+      ...
+      balance_tutorial.transform.FreeMoney,
+      balance_tutorial.transform.BalanceTransfer,
+  ]
+```
+
+##### Step Five: Transfer some balance!
+
+From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
