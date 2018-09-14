@@ -9,9 +9,9 @@ import asyncio
 @click.argument('arg')
 def init(arg):
     if arg == 'balance_query':
-        input_key = click.prompt("please enter a user signing key",)
+        input_address = click.prompt("please enter a user address",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_balance_query(input_key))
+        loop.run_until_complete(init_balance_query(input_address))
         return
 
     if arg == 'create_user':
