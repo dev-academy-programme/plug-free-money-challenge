@@ -110,3 +110,9 @@ In `transaction.py`, the `init_transaction()` function will receive all the requ
 From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
 
 #### Congratulations! You did it again. Nobody can stop you now.
+
+#### Where to from here?
+
+- Write another Transform that can compare the balances of two Users and return the difference.
+
+-  Try to move from a state indexer for the balance to a model indexer.
