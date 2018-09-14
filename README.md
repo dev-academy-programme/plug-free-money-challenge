@@ -9,15 +9,17 @@
 
 1. Clone down the `plug-intro` repository into your workspace folder.
 
-1. Navigate into the `plug-intro` repository and enter the pip shell using `pipenv shell` command.
+1. Navigate into the `plug-intro` repository and enter the pip shell using `pipenv shell` command. Note: You must have pip, pipenv and python (v 3.6 or higher).
 
 1. Run `pipenv install ../plug/libs/plug-0.0.20.tar.gz`, with the correct path to your local copy of the plug repository.
 
 1. Do the same for `pipenv install ../plug/libs/plug-api-1.6.1.tar.gz`.
 
-1. 
+1. If your installation went according to plan, you should be able to run `plug-dev create-network -n1 node.yaml -d ./nodes` which will automatically create a `/nodes` directory with a `node_0` directory inside it.
 
-Note: You must have pip, pipenv and python (v 3.6 or higher).
+1. Navigate into the `node_0` directory and enter the command `plug run`. Your terminal should now burst to life and display some delightful ascii art.
+
+1. Head over to http://localhost:8181/_swagger and make sure the server has spun up properly. 
 
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
