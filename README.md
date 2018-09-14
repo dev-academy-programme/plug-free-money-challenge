@@ -93,3 +93,5 @@ Back in `__init.py__` you must remember to _add your new transform to this list_
 #### Step Five: Transfer some balance!
 
 From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
+
+Congratulations! You did it again. Another transform. Nobody can stop you now.
