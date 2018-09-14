@@ -1,27 +1,24 @@
-Balance Tutorial
-==============================
+# INTRODUCTION TO PLUG TRANSFORMS
 
-## INTRODUCTION TO PLUG AND TRANSFORMS
-
-### OBJECTIVES
+## OBJECTIVES
 - Create a Transform that adds free money to a specific Users balance.
 - Create a Transform that can transfer money between two Users
 
-#### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
+### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
 First, we're going to create a new FreeMoney class that extends Transform. This transform will allow us to give some free money to a specific user.
 
-##### Step One: Generating a User.
+#### Step One: Generating a User.
 
 Before we can start handing out any free money, we'll need someone to give it to. Navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information in your console.
 
 Remember to keep a copy of the new User's `address` and `signing_key`. You will need these later! We'll use them to transform and query the blockchain.
 
-##### Step Two: Checking their balance.
+#### Step Two: Checking their balance.
 
 All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `address` from earlier when prompted. This should print the User balance in your log.
 
-##### Step Three: Writing the FreeMoney transform.
+#### Step Three: Writing the FreeMoney transform.
 
 Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, and has several required methods to work correctly. *Check out the plug documentation for a reference on writing Transforms.*
 
@@ -33,19 +30,19 @@ Once you have that `balances[]` reference, you can use the address of the the `s
 
 You still need to flesh out the other required methods too, but they are fairly standard. Remember to  *Check out the plug documentation for a reference on writing Transforms.*
 
-##### Step Four: Add the FreeMoney transform to your components array.
+#### Step Four: Add the FreeMoney transform to your components array.
 
 Over in `__init.py__` there is an array of components to include in this Plugin. Make sure you _add your new FreeMoney transform to this list_:
 
 ```
   components = [
-      # Include your plugin's
+      # Include your plugins
       ...
       balance_tutorial.transform.FreeMoney,
   ]
 ```
 
-##### Step Five: Writing the FreeMoney client.
+#### Step Five: Writing the FreeMoney client.
 
 Head over to `free_money.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have a `signing_key_input` argument to retrieve the correct user object. This is going to require using the `User.load()` function. If you haven't already, go read `user.py` and make sure you understand exactly what going on there.
 
@@ -53,33 +50,33 @@ Once you have a reference to the correct user, it's time to apply the FreeMoney 
 
 The rest of the client code in `free_money.py` will be fairly boilerplate, and won't differ too much from transform to transform. For more information on challenges, proofs and transactions, please refer to the Plug documentation.
 
-##### Step Six: Give some free money.
+#### Step Six: Give some free money.
 
 Try running `python client.py free_money` from your client directory. After POST-ing the entire affair to the Plug API, you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client.py balance_query` again with the same `signing_key` and their balance should have increased significantly.
 
 Congratulations! You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented for financial reasons._
 
-#### OBJECTIVE: CREATE A BALANCE TRANSFER TRANSFORM
+### OBJECTIVE: CREATE A BALANCE TRANSFER TRANSFORM
 
 Now that we can give users money, we're going to write a new BalanceTransfer class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
 
-##### Step One: Generating another User.
+#### Step One: Generating another User.
 
 There must be multiple Users within the blockchain to allow the transfer of money back and forth. Run `python client.py create_user` from your client directory again. Remember to keep a copy of the new User's `address` and `signing_key`.
 
-##### Step Two: Writing the BalanceTransfer transform.
+#### Step Two: Writing the BalanceTransfer transform.
 
 Once again it's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_.
 
 Just like in the FreeMoney transform, the real logic takes place in the `verify()` and `apply()` methods. In `verify()`, you need to make sure that the sender actually _has_ a sufficient balance to cover the transfer, and then in `apply()` you will alter the user balances.
 
-##### Step Three: Writing the BalanceTransfer client code.
+#### Step Three: Writing the BalanceTransfer client code.
 
 In `transaction.py`, the `init_transaction(sender_key_input, receiver_address, amount)` function will receive all the required arguments from the terminal.
 
 Using your `free_money.py` code as a rough template, write all the necessary code for this transaction to occur.
 
-##### Step Four: Add the BalanceTransfer class to your components array.
+#### Step Four: Add the BalanceTransfer class to your components array.
 
 Back in `__init.py__` you must remember to _add your new transform to this list_:
 
@@ -92,6 +89,6 @@ Back in `__init.py__` you must remember to _add your new transform to this list_
   ]
 ```
 
-##### Step Five: Transfer some balance!
+#### Step Five: Transfer some balance!
 
 From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
