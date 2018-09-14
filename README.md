@@ -78,36 +78,9 @@ Head over to `free_money.py`. The first step here is going to be getting a refer
 
 Once you have a reference to the correct user, it's time to apply the FreeMoney transform you wrote in `transform.py`. Don't forget to pass in the `receiver` and `amount` arguments.
 
-The rest of this client code in `free_money.py` is fairly boilerplate, and won't differ too much from transform to transform. For more information on challenges, proofs and transactions, please refer to the Plug documentation:
+The rest of the client code in `free_money.py` will be fairly boilerplate, and won't differ too much from transform to transform. For more information on challenges, proofs and transactions, please refer to the Plug documentation.
 
-```
-async def init_free_money(signing_key_input):
-
-    # registry = ...
-
-    # user = ...
-
-    # transform = ...
-
-
-    challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user.nonce, challenge, 'balance.tutorial')
-    proof.sign(user.signing_key)
-    transaction = Transaction(transform, {proof.address: proof})
-
-    event = Event(
-        event=TransactionEvent.ADD,
-        payload=transaction
-    )
-
-    payload = registry.pack(event)
-
-    async with aiohttp.ClientSession() as session:
-        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
-            data = await response.json()
-
-    print(data)
-```
+##### Step Six: Give some free money.
 
 Try running `python client.py free_money` from your client directory. After POST-ing the entire affair to the Plug API, you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client.py balance_query` again with the same `signing_key` and their balance should have increased significantly.
 
@@ -125,30 +98,6 @@ There must be multiple Users within the blockchain to allow the transfer of mone
 
 Once again it's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_.
 
-```
-@dataclass
-class BalanceTransfer(Transform):
-    fqdn = "tutorial.BalanceTransfer"
-    sender: str
-    receiver: str
-    amount: int
+Just like in the FreeMoney transform, the real logic takes place in the `verify()` and `apply()` methods. In `verify()`, you need to make sure that the sender actually _has_ a sufficient balance to cover the transfer, and then in `apply()` you will alter the user balances.
 
-    def required_authorizations(self):
-
-    @staticmethod
-    def required_models():
-
-    def required_keys(self):
-
-    @staticmethod
-    def pack(registry, obj):
-
-    @classmethod
-    def unpack(cls, registry, payload):
-
-    def verify(self, state_slice):
-
-    def apply(self, state_slice):
-```
-
-Once again,
+##### Step Three: Writing the BalanceTransfer client code:
