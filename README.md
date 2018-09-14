@@ -5,6 +5,12 @@
 - Create a Transform that adds free money to a specific Users balance.
 - Create a Transform that can transfer money between two Users
 
+### SETUP
+
+1. Clone down the `plug-intro` repository into your workspace folder.
+
+1.
+
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
 First, we're going to create a new FreeMoney class that extends Transform. This transform will allow us to give some free money to a specific user.
@@ -94,4 +100,4 @@ Back in `__init.py__` you must remember to _add your new transform to this list_
 
 From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
 
-Congratulations! You did it again. Another transform. Nobody can stop you now.
+#### Congratulations! You did it again. Nobody can stop you now.
