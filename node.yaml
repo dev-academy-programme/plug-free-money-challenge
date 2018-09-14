@@ -1,0 +1,14 @@
+plug:
+  network_id: challenge.FreeMoney
+  max_block_size: 100
+
+  registry:
+    plugins:
+    - free_money_challenge.__init__.FreeMoneyPlugin
+
+  initial_state:
+    free_money_challenge.model.BalanceModel:
+      1Ax9pA92ZAeziwGfmG5qGSgZRZT9nbX3or:
+          balance: 100
+      12z3kokcMpB6a7RrCMzcYDryZk4V96gKgz:
+          balance: 100

@@ -8,12 +8,12 @@ install_requires = (
 )
 
 setuptools.setup(
-    name="balance_tutorial",
+    name="free_money_challenge",
     version=version,
     author="Harrison Symes",
     author_email="symeshjb@gmail.com",
-    url="https://github.com/balance_tutorial",
-    packages=["balance_tutorial"],
+    url="https://github.com/free_money_challenge",
+    packages=["free_money_challenge"],
     install_requires=install_requires,
 
     extras_require={
