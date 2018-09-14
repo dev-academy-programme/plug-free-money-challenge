@@ -9,7 +9,15 @@
 
 1. Clone down the `plug-intro` repository into your workspace folder.
 
-1.
+1. Navigate into the `plug-intro` repository and enter the pip shell using `pipenv shell` command.
+
+1. Run `pipenv install ../plug/libs/plug-0.0.20.tar.gz`, with the correct path to your local copy of the plug repository.
+
+1. Do the same for `pipenv install ../plug/libs/plug-api-1.6.1.tar.gz`.
+
+1. 
+
+Note: You must have pip, pipenv and python (v 3.6 or higher).
 
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
