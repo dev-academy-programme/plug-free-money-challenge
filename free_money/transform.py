@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from plug.abstract import Transform
 
-from free_money_challenge.model import BalanceModel
+from free_money.model import BalanceModel
 
-import free_money_challenge.error
-import free_money_challenge.model
+import free_money.error
+import free_money.model
 
 @dataclass
 class BalanceTransfer(Transform):
@@ -43,10 +43,10 @@ class BalanceTransfer(Transform):
         balances = state_slice[BalanceModel.fqdn]
 
         if self.amount <= 0:
-            raise free_money_challenge.error.InvalidAmountError("Transfer amount must be more than 0")
+            raise free_money.error.InvalidAmountError("Transfer amount must be more than 0")
 
         if balances[self.sender].balance < self.amount:
-            raise free_money_challenge.error.NotEnoughMoneyError("Insufficient funds")
+            raise free_money.error.NotEnoughMoneyError("Insufficient funds")
 
     def apply(self, state_slice):
         balances = state_slice[BalanceModel.fqdn]
@@ -87,9 +87,8 @@ class FreeMoney(Transform):
         balances = state_slice[BalanceModel.fqdn]
 
         if self.amount <= 0:
-            raise free_money_challenge.error.InvalidAmountError("Transfer amount must be more than 0")
+            raise free_money.error.InvalidAmountError("Transfer amount must be more than 0")
 
     def apply(self, state_slice):
         balances = state_slice[BalanceModel.fqdn]
         balances[self.receiver].balance += self.amount
-

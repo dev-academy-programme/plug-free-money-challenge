@@ -8,12 +8,12 @@ install_requires = (
 )
 
 setuptools.setup(
-    name="free_money_challenge",
+    name="free_money",
     version=version,
     author="Harrison Symes",
     author_email="symeshjb@gmail.com",
-    url="https://github.com/free_money_challenge",
-    packages=["free_money_challenge"],
+    url="https://github.com/free_money",
+    packages=["free_money"],
     install_requires=install_requires,
 
     extras_require={
