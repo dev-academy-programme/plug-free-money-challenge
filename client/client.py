@@ -1,6 +1,6 @@
 from create_user import init_create_user
 from balance_query import init_balance_query
-from free_money import init_free_money
+from free_money_client import init_free_money
 from transaction import init_transaction
 import click
 import asyncio
