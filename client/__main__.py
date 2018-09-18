@@ -6,9 +6,12 @@ from balance_query import init_balance_query
 from free_money_client import init_free_money
 from transaction import init_transaction
 
+from api_client import get_api_client
+
 @click.command()
 @click.argument('arg')
 def init(arg):
+    client = get_api_client()
     if arg == 'balance_query':
         input_address = click.prompt("please enter a user address",)
         loop = asyncio.get_event_loop()
@@ -23,7 +26,7 @@ def init(arg):
         input_key = click.prompt("please enter a user signing key",)
         amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_free_money(input_key, amount))
+        loop.run_until_complete(init_free_money(client, input_key, amount))
         return
 
     if arg == 'transaction':
