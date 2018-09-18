@@ -20,8 +20,9 @@ def init(arg):
 
     if arg == 'free_money':
         input_key = click.prompt("please enter a user signing key",)
+        amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_free_money(input_key))
+        loop.run_until_complete(init_free_money(input_key, amount))
         return
 
     if arg == 'transaction':

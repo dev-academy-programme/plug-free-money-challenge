@@ -7,7 +7,7 @@ from plug_api.key_managers.sqlite import SqliteKeyManager
 from free_money.transform import FreeMoney
 from user import User
 
-async def init_free_money(address_input):
+async def init_free_money(address_input, amount):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(FreeMoney)
@@ -17,7 +17,7 @@ async def init_free_money(address_input):
 
     response = client.broadcast_transform(FreeMoney(
         receiver=address_input,
-        amount=1000,
+        amount=amount,
     ))
 
     print(response)
