@@ -1,9 +1,16 @@
-from plug.key import ED25519SigningKey
-import aiohttp
+from plug_api.clients.v1 import PlugApiClient
+from plug_api.key_managers.sqlite import SqliteKeyManager
+
+from free_money.model import BalanceModel
 
 async def init_balance_query(address):
-    async with aiohttp.ClientSession() as session:
-        async with session.get("http://localhost:8181/_api/v1/state/-1/tutorial.BalanceModel/" + address) as response:
-            data = await response.json()
+    key_manager = SqliteKeyManager('keys.db').setup()
+    client = PlugApiClient("http://localhost:8181", key_manager)
 
-    print(data)
+    response = client.get_model_instance(
+        model=BalanceModel,
+        key=address,
+        height=-1,
+    )
+
+    print(response)
