@@ -1,7 +1,7 @@
 from plug_api.clients.v1 import PlugApiClient
 from plug_api.key_managers.sqlite import SqliteKeyManager
 
-from client.api_client import get_api_client
+from api_client import get_api_client
 from key_manager import get_key_manager
 
 class User:
