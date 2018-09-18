@@ -15,14 +15,14 @@ from plug_api.clients.v1 import PlugApiClient
 from plug_api.key_managers.sqlite import SqliteKeyManager
 
 
-async def init_free_money(signing_key_input):
+async def init_free_money(address_input):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(FreeMoney)
 
-    user = await User.load(signing_key_input)
+    user = await User.load(address_input)
 
-    print(user.nonce)
+    print(user)
 
     transform = FreeMoney(
         receiver=user.address,
