@@ -14,7 +14,6 @@ class User:
         network_id = client.network_id
         key_manager = SqliteKeyManager('keys.db').setup()
 
-        # key_manager = SqliteKeyManager("keys.db")
         if (address):
             self.address = address
         else:
@@ -23,9 +22,7 @@ class User:
 
     @staticmethod
     async def load(address):
-        print("load called")
         user = User(address)
-        print(await user.get_nonce())
         user.nonce = await user.get_nonce()
         return user
 

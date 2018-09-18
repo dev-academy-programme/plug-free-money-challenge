@@ -21,48 +21,13 @@ async def init_free_money(address_input):
     registry.register(FreeMoney)
 
     user = await User.load(address_input)
-
-    print(user.nonce)
+    key_manager = SqliteKeyManager('keys.db').setup()
+    client = PlugApiClient("http://localhost:8181", key_manager)
 
     transform = FreeMoney(
         receiver=address_input,
         amount=1000,
     )
 
-    key_manager = SqliteKeyManager('keys.db')
-    key_manager.setup()
-
-
-    key_manager = SqliteKeyManager('keys.db').setup()
-    client = PlugApiClient("http://localhost:8181", key_manager)
-
-    # client = PlugApiClient("http://localhost:8181", "keys.db")
-    actual_response = client.broadcast_transform(transform)
-    # response = await user.increment_nonce()
-    # print(response)
-    print(actual_response)
-    # actual_response = api_client.broadcast_transform(
-    #     transform=transform,
-    #     sync_nonces=True,
-    # )
-    #
-    # print(actual_response)
-
-
-    # challenge = transform.hash(sha256)
-    # proof = SingleKeyProof(user.address, user.nonce, challenge, 'challenge.FreeMoney')
-    # proof.sign(user.signing_key)
-    # transaction = Transaction(transform, {proof.address: proof})
-    #
-    # event = Event(
-    #     event=TransactionEvent.ADD,
-    #     payload=transaction
-    # )
-    #
-    # payload = registry.pack(event)
-    #
-    # async with aiohttp.ClientSession() as session:
-    #     async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
-    #         data = await response.json()
-
-    # print(data)
+    response = client.broadcast_transform(transform)
+    print(response)
