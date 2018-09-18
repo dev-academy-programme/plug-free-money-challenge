@@ -13,4 +13,4 @@ async def init_balance_query(address):
         height=-1,
     )
 
-    print(response)
+    print("Your current balance is: " + str(response['balance']))
