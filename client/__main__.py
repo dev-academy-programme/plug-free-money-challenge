@@ -1,9 +1,10 @@
+import click
+import asyncio
+
 from create_user import init_create_user
 from balance_query import init_balance_query
 from free_money_client import init_free_money
 from transaction import init_transaction
-import click
-import asyncio
 
 @click.command()
 @click.argument('arg')
@@ -23,7 +24,6 @@ def init(arg):
         amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
         loop.run_until_complete(init_free_money(input_key, amount))
-        loop.run_until_complete(init_balance_query(input_key))
         return
 
     if arg == 'transaction':

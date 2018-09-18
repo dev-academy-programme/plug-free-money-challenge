@@ -1,21 +1,16 @@
 from plug.message import Event
 from plug.registry import Registry
 
-from plug_api.clients.v1 import PlugApiClient
-from plug_api.key_managers.sqlite import SqliteKeyManager
+from client.api_client import get_api_client
+from register import register_transform_event
 
 from free_money.transform import FreeMoney
 from user import User
 
 async def init_free_money(address_input, amount):
-    registry = Registry().with_default()
-    registry.register(Event)
-    registry.register(FreeMoney)
+    register_transform_event(FreeMoney)
 
-    key_manager = SqliteKeyManager('keys.db').setup()
-    client = PlugApiClient("http://localhost:8181", key_manager)
-
-    response = client.broadcast_transform(FreeMoney(
+    response = get_api_client().broadcast_transform(FreeMoney(
         receiver=address_input,
         amount=int(amount),
     ))

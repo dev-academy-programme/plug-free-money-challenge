@@ -1,10 +1,13 @@
 from plug_api.clients.v1 import PlugApiClient
 from plug_api.key_managers.sqlite import SqliteKeyManager
 
+from client.api_client import get_api_client
+from key_manager import get_key_manager
+
 class User:
-    client = PlugApiClient("http://localhost:8181", "keys.db")
+    client = get_api_client()
+    key_manager = get_key_manager()
     network_id = client.network_id
-    key_manager = SqliteKeyManager('keys.db').setup()
 
     def __init__(self, address):
         if (address):
