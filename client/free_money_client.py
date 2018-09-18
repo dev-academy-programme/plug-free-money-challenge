@@ -22,10 +22,10 @@ async def init_free_money(address_input):
 
     user = await User.load(address_input)
 
-    print(user)
+    print(user.nonce)
 
     transform = FreeMoney(
-        receiver=user.address,
+        receiver=address_input,
         amount=1000,
     )
 
@@ -37,8 +37,10 @@ async def init_free_money(address_input):
     client = PlugApiClient("http://localhost:8181", key_manager)
 
     # client = PlugApiClient("http://localhost:8181", "keys.db")
-    client.broadcast_transform(transform)
-    await user.increment_nonce()
+    actual_response = client.broadcast_transform(transform)
+    # response = await user.increment_nonce()
+    # print(response)
+    print(actual_response)
     # actual_response = api_client.broadcast_transform(
     #     transform=transform,
     #     sync_nonces=True,

@@ -21,32 +21,16 @@ class User:
             self.address = key_manager.generate()
             key_manager.set_nonce(self.address, network_id, 0)
 
-        # print(key_manager.__get_cursor)
-        # print (key_manager.__contains__(self.address))
-        # self.signing_key =
-        # self.address = plug_address(self.signing_key)
-        # self.nonce =
-
-
     @staticmethod
     async def load(address):
+        print("load called")
         user = User(address)
+        print(await user.get_nonce())
+        user.nonce = await user.get_nonce()
         return user
 
-    async def increment_nonce(self):
+    async def get_nonce(self):
         client = PlugApiClient("http://localhost:8181", "keys.db")
         network_id = client.network_id
         key_manager = SqliteKeyManager('keys.db').setup()
-        # signing_key = ED25519SigningKey.from_string(signing_key)
-        # user = User(self.address)
-        # user.address = plug_address(signing_key)
-        nonce = key_manager.increment_nonce(self.address, network_id)
-        print(nonce)
-        # await user.get_nonce()
-        # return user
-
-    async def get_nonce(self):
-        async with aiohttp.ClientSession() as session:
-            async with session.get("http://localhost:8181/_api/v1/state/-1/plug.model.NonceModel/" + self.address) as response:
-                data = await response.json()
-                self.nonce = data['value']
+        return key_manager.get_nonce(self.address, network_id)
