@@ -1,42 +1,31 @@
-from plug.hash import sha256
-from plug.proof import SingleKeyProof
-from free_money.transform import BalanceTransfer
-from plug.transaction import Transaction
-from plug.constant import TransactionEvent
 from plug.message import Event
 from plug.registry import Registry
 from user import User
-import aiohttp
-import asyncio
-import json
+
+from plug.message import Event
+from plug.registry import Registry
+
+from plug_api.clients.v1 import PlugApiClient
+from plug_api.key_managers.sqlite import SqliteKeyManager
+
+from free_money.transform import BalanceTransfer
+from user import User
+
 
 async def init_transaction(sender_key_input, receiver_address, amount):
     registry = Registry().with_default()
     registry.register(Event)
     registry.register(BalanceTransfer)
 
-    sender = await User.load(sender_key_input)
+    # sender = await User.load(sender_key_input)
 
-    transform = BalanceTransfer(
-        sender=sender.address,
+    key_manager = SqliteKeyManager('keys.db').setup()
+    client = PlugApiClient("http://localhost:8181", key_manager)
+
+    response = client.broadcast_transform(BalanceTransfer(
+        sender=sender_key_input,
         receiver=receiver_address,
-        amount=int(amount),
-    )
+        amount=int(amount)
+    ))
 
-    challenge = transform.hash(sha256)
-    proof = SingleKeyProof(sender.address, sender.nonce, challenge, 'challenge.FreeMoney')
-    proof.sign(sender.signing_key)
-    transaction = Transaction(transform, {proof.address: proof})
-
-    event = Event(
-        event=TransactionEvent.ADD,
-        payload=transaction
-    )
-
-    payload = registry.pack(event)
-
-    async with aiohttp.ClientSession() as session:
-        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
-            data = await response.json()
-
-    print(data)
+    print(response)

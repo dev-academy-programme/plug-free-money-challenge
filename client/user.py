@@ -10,14 +10,14 @@ class User:
         if (address):
             self.address = address
         else:
-            self.address = key_manager.generate()
-            key_manager.set_nonce(self.address, network_id, 0)
+            self.address = self.key_manager.generate()
+            self.key_manager.set_nonce(self.address, self.network_id, 0)
 
-    @staticmethod
-    async def load(address):
-        user = User(address)
-        user.nonce = await user.get_nonce()
-        return user
-
-    async def get_nonce(self):
-        return self.key_manager.get_nonce(self.address, self.network_id)
+    # @staticmethod
+    # async def load(address):
+    #     user = User(address)
+    #     user.nonce = await user.get_nonce()
+    #     return user
+    #
+    # async def get_nonce(self):
+    #     return self.key_manager.get_nonce(self.address, self.network_id)
