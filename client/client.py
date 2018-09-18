@@ -23,6 +23,7 @@ def init(arg):
         amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
         loop.run_until_complete(init_free_money(input_key, amount))
+        loop.run_until_complete(init_balance_query(input_key))
         return
 
     if arg == 'transaction':

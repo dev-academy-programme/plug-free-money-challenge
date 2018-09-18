@@ -17,7 +17,7 @@ async def init_free_money(address_input, amount):
 
     response = client.broadcast_transform(FreeMoney(
         receiver=address_input,
-        amount=amount,
+        amount=int(amount),
     ))
 
     print(response)
