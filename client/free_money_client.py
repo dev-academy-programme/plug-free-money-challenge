@@ -11,6 +11,10 @@ import aiohttp
 import json
 import asyncio
 
+from plug_api.clients.v1 import PlugApiClient
+from plug_api.key_managers.sqlite import SqliteKeyManager
+
+
 async def init_free_money(signing_key_input):
     registry = Registry().with_default()
     registry.register(Event)
@@ -18,25 +22,41 @@ async def init_free_money(signing_key_input):
 
     user = await User.load(signing_key_input)
 
+    print(user.nonce)
+
     transform = FreeMoney(
         receiver=user.address,
         amount=1000,
     )
 
-    challenge = transform.hash(sha256)
-    proof = SingleKeyProof(user.address, user.nonce, challenge, 'challenge.FreeMoney')
-    proof.sign(user.signing_key)
-    transaction = Transaction(transform, {proof.address: proof})
+    key_manager = SqliteKeyManager('keys.db')
+    key_manager.setup()
 
-    event = Event(
-        event=TransactionEvent.ADD,
-        payload=transaction
-    )
 
-    payload = registry.pack(event)
+    api_client = PlugApiClient("http://localhost:8181", key_manager)
 
-    async with aiohttp.ClientSession() as session:
-        async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
-            data = await response.json()
+    # actual_response = api_client.broadcast_transform(
+    #     transform=transform,
+    #     sync_nonces=True,
+    # )
+    #
+    # print(actual_response)
 
-    print(data)
+
+    # challenge = transform.hash(sha256)
+    # proof = SingleKeyProof(user.address, user.nonce, challenge, 'challenge.FreeMoney')
+    # proof.sign(user.signing_key)
+    # transaction = Transaction(transform, {proof.address: proof})
+    #
+    # event = Event(
+    #     event=TransactionEvent.ADD,
+    #     payload=transaction
+    # )
+    #
+    # payload = registry.pack(event)
+    #
+    # async with aiohttp.ClientSession() as session:
+    #     async with session.post("http://localhost:8181/_api/v1/transaction", json=payload) as response:
+    #         data = await response.json()
+
+    # print(data)
