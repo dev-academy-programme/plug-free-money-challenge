@@ -30,16 +30,20 @@ class User:
 
     @staticmethod
     async def load(address):
+        user = User(address)
+        return user
+
+    async def increment_nonce(self):
         client = PlugApiClient("http://localhost:8181", "keys.db")
         network_id = client.network_id
         key_manager = SqliteKeyManager('keys.db').setup()
         # signing_key = ED25519SigningKey.from_string(signing_key)
-        user = User(address)
+        # user = User(self.address)
         # user.address = plug_address(signing_key)
-        nonce = key_manager.increment_nonce(address, network_id)
+        nonce = key_manager.increment_nonce(self.address, network_id)
         print(nonce)
         # await user.get_nonce()
-        return user
+        # return user
 
     async def get_nonce(self):
         async with aiohttp.ClientSession() as session:

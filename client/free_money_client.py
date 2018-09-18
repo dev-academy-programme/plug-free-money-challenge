@@ -33,8 +33,12 @@ async def init_free_money(address_input):
     key_manager.setup()
 
 
-    api_client = PlugApiClient("http://localhost:8181", key_manager)
+    key_manager = SqliteKeyManager('keys.db').setup()
+    client = PlugApiClient("http://localhost:8181", key_manager)
 
+    # client = PlugApiClient("http://localhost:8181", "keys.db")
+    client.broadcast_transform(transform)
+    await user.increment_nonce()
     # actual_response = api_client.broadcast_transform(
     #     transform=transform,
     #     sync_nonces=True,
