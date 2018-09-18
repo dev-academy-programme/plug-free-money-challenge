@@ -1,7 +1,7 @@
 from free_money.model import BalanceModel
 from client.api_client import get_api_client
 
-async def init_balance_query(address):
+async def init_balance_query(client, address):
     response = get_api_client().get_model_instance(
         model=BalanceModel,
         key=address,

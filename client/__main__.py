@@ -34,7 +34,7 @@ def init(arg):
         receiver_address = click.prompt("please enter the receiver address",)
         amount = click.prompt("please enter the amount",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_transaction(sender_input_key, receiver_address, amount))
+        loop.run_until_complete(init_transaction(client, sender_input_key, receiver_address, amount))
         return
 
     else:

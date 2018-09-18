@@ -19,5 +19,6 @@ def test_free_money_request_success(mocker):
     client.broadcast_transform.assert_called_once()
 
     broadcasted_transform = client.broadcast_transform.call_args[0][0]
+    assert type(broadcasted_transform) is FreeMoney
     assert broadcasted_transform.amount == amount
     assert broadcasted_transform.receiver == fake_address
