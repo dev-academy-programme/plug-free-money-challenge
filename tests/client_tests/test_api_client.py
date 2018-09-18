@@ -1,11 +1,16 @@
 import pytest
+import mock
+from pytest_mock import mocker
 
-from plug_api.clients.v1 import PlugApiClient
 from client.api_client import get_api_client
+from key_manager import MockKeyManager
+import plug_api
 
-def test_get_api_client():
-    expected_network_id = "challenge.FreeMoney"
+class FakeApiClient:
+    uri: "hello"
+
+def test_get_api_client(mocker):
     client = get_api_client()
 
-    assert client.network_id == expected_network_id
-    assert type(client) == PlugApiClient
+    assert type(client.key_manager) is MockKeyManager
+    assert type(client) is (plug_api.clients.v1.PlugApiClient)
