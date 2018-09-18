@@ -257,3 +257,5 @@ config
 description
 hooks
 info
+
+keys.db
