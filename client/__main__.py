@@ -15,7 +15,7 @@ def init(arg):
     if arg == 'balance_query':
         input_address = click.prompt("please enter a user address",)
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(init_balance_query(input_address))
+        loop.run_until_complete(init_balance_query(client, input_address))
         return
 
     if arg == 'create_user':
