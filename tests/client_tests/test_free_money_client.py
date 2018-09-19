@@ -1,6 +1,5 @@
 import pytest
 from pytest_mock import mocker
-import asyncio
 
 from api_client import MockApiClient
 from free_money.transform import FreeMoney
@@ -13,8 +12,7 @@ def test_free_money_request_success(mocker):
     client = MockApiClient()
 
     mocker.spy(client, 'broadcast_transform')
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(init_free_money(client, fake_address, amount))
+    init_free_money(client, fake_address, amount)
 
     client.broadcast_transform.assert_called_once()
 

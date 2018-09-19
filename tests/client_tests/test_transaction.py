@@ -1,6 +1,5 @@
 import pytest
 from pytest_mock import mocker
-import asyncio
 
 from api_client import MockApiClient
 from free_money.transform import BalanceTransfer
@@ -14,9 +13,8 @@ def test_transaction_request_success(mocker):
     client = MockApiClient()
 
     mocker.spy(client, 'broadcast_transform')
-    loop = asyncio.get_event_loop()
-
-    loop.run_until_complete(init_transaction(client, sender_address, receiver_address, amount))
+    
+    init_transaction(client, sender_address, receiver_address, amount)
 
     client.broadcast_transform.assert_called_once()
 
