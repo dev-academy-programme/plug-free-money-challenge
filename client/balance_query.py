@@ -1,9 +1,10 @@
-from plug.key import ED25519SigningKey
-import aiohttp
+from free_money.model import BalanceModel
 
-async def init_balance_query(address):
-    async with aiohttp.ClientSession() as session:
-        async with session.get("http://localhost:8181/_api/v1/state/-1/tutorial.BalanceModel/" + address) as response:
-            data = await response.json()
-
-    print(data)
+def init_balance_query(client, address):
+    response = client.get_model_instance(
+        model=BalanceModel,
+        key=address,
+        height=-1,
+    )
+    print("Your current balance is: " + str(response['balance']))
+    return response
