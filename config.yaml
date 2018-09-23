@@ -4,9 +4,6 @@ plug:
   registry:
     plugins:
     - free_money.FreeMoneyPlugin
-  indexers:
-    _state:
-    - free_money.indexer.BalanceIndexer
   storage:
     class: plug.storage.sqlite.SqliteStorage
     path: db.sqlite
