@@ -1,5 +1,4 @@
-from client.api_client import get_api_client
-from client.key_manager import get_key_manager
+from client.utils import get_api_client, get_key_manager
 
 class User:
 

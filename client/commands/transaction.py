@@ -1,7 +1,6 @@
 from free_money.transform import BalanceTransfer
 
-from client.register import register_transform_event
-
+from client.utils import register_transform_event
 from client.user import User
 
 def init_transaction(client, sender_key_input, receiver_address, amount):

@@ -6,7 +6,7 @@ from commands.balance_query import init_balance_query
 from commands.free_money_client import init_free_money
 from commands.transaction import init_transaction
 
-from api_client import get_api_client
+from utils import get_api_client
 
 @click.command()
 @click.argument('arg')

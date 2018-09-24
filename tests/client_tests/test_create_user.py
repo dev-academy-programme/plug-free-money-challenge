@@ -5,8 +5,8 @@ from mocks.key_manager import MockKeyManager
 from client.commands.create_user import init_create_user
 
 def test_create_user_init_(mocker):
-    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
-    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
+    mocker.patch('client.utils.PlugApiClient', MockApiClient)
+    mocker.patch('client.utils.SqliteKeyManager', MockKeyManager)
 
     user = init_create_user()
     assert user.address == 'fake_address'

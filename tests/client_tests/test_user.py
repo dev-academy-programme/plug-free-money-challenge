@@ -8,8 +8,8 @@ def test_new_user_properties(mocker):
     """ARRANGE"""
     expected_address = "fake_address"
     expected_network_id = "fake_network_id"
-    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
-    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
+    mocker.patch('client.utils.PlugApiClient', MockApiClient)
+    mocker.patch('client.utils.SqliteKeyManager', MockKeyManager)
 
     """ACT"""
     user = User(None)
@@ -24,8 +24,8 @@ def test_existing_user_properties(mocker):
     """ARRANGE"""
     existing_address = "fake_key"
     expected_network_id = "fake_network_id"
-    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
-    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
+    mocker.patch('client.utils.PlugApiClient', MockApiClient)
+    mocker.patch('client.utils.SqliteKeyManager', MockKeyManager)
 
     """ACT"""
     user = User(existing_address)
