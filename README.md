@@ -45,9 +45,9 @@ We're going to write a new BalanceTransfer class that extends Transform. This tr
 #### Step One: Generating another User.
 
 There must be multiple Users within the blockchain to allow the transfer of money back and forth.
-In a new terminal window, navigate into the client repository and run `python client.py create_user`. This should add a new User into the blockchain, and print out their pertinent information into your console.
+In a new terminal window, run `python client create_user` from the root of your project. This should add a new User into the blockchain, and print out their pertinent information into your console.
 
-Remember to keep a record of the new Users `address`es and `signing_key`s. You will need these later! We'll use them to transform and query the blockchain.
+Remember to keep a record of the new User key. You will need these later! We'll use them to transform and query the blockchain.
 
 #### Step Two: Writing the BalanceTransfer transform.
 
@@ -69,7 +69,7 @@ free_money.transform.BalanceTransfer,
 
 #### Step Four: Transfer some Balance!
 
-From your `client` directory run the `python client.py transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client.py balance_query` on your users and see the balance has transferred successfully.
+From the root of your project, run the `python client transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client balance_query` on your users and see the balance has transferred successfully.
 
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
@@ -77,7 +77,7 @@ Now we're going to create a new FreeMoney class that extends Transform. This tra
 
 #### Step One: Checking their balance.
 
-All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client.py balance_query` from your terminal and enter the `address` from earlier when prompted. This should print the User balance in your log.
+All users are created equal in this blockchain. When a new User is added, they receive a starting balance of 100. Try running `python client balance_query` from your terminal and enter the `address` from earlier when prompted. This should print the User balance in your log.
 
 #### Step Two: Writing the FreeMoney transform.
 
@@ -104,15 +104,11 @@ Over in `__init.py__` _add your new FreeMoney transform to this list_:
 
 #### Step Four: Writing the FreeMoney client.
 
-Head over to `free_money.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have a `signing_key_input` argument to retrieve the correct user object. This is going to require using the `User.load()` function. If you haven't already, go read `user.py` and make sure you understand exactly what going on there.
-
-Once you have a reference to the correct user, it's time to apply the FreeMoney transform you wrote in `transform.py`. Don't forget to pass in the `receiver` and `amount` arguments.
-
-The rest of the client code in `free_money.py` will be fairly boilerplate, and won't differ too much from transform to transform. You can use `transaction.py` as a reference. For more information on challenges, proofs and transactions, please refer to the Plug documentation.
+Head over to `free_money.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have the `address_input` and `amount` arguments to pass into our transform.
 
 #### Step Five: Give some free money.
 
-Try running `python client.py free_money` from your client directory. After POST-ing the entire affair to the Plug API, you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client.py balance_query` again with the same `address` and their balance should have increased significantly.
+Try running `python client free_money` from your root directory; you should receive a OK status code back. To double check that our User did indeed receive their free money, run `python client balance_query` again with the same `address` and their balance should have increased.
 
 #### Congratulations!
 
