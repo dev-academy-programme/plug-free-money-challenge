@@ -1,4 +1,8 @@
-# INTRODUCTION TO PLUG TRANSFORMS
+# Plug Free Money Challenge
+
+Welcome to the Free Money Challenge! For an introduction to the project, check out this [overview](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-overview.md).
+
+If you get drastically stuck at any point, you can also consult this [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
 
 ## OBJECTIVES
 
