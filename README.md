@@ -36,6 +36,8 @@
 
 ```
 
+1. You can run the tests with `python setup.py test`
+
 ### OBJECTIVE: CREATE A BALANCE TRANSFER TRANSFORM
 
 We're going to write a new BalanceTransfer class that extends Transform. This transform will be able to transfer money from the balance of one user to another.

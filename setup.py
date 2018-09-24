@@ -17,6 +17,7 @@ setuptools.setup(
     url="https://github.com/free_money",
     packages=["free_money"],
     install_requires=install_requires,
+    setup_requires=["pytest-runner"],
 
     extras_require={
         "test": (
