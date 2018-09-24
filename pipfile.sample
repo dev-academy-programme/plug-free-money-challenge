@@ -9,7 +9,9 @@ plug = {git = "*YOUR_PATH_TO_PLUG*/plug-0.0.20.tar.gz"}
 plug_api = {path = "*YO?UR_PATH_TO_PLUG*/plug-api-1.6.1.tar.gz"}
 
 [dev-packages]
+mock = "*"
 pytest = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.7"
