@@ -1,4 +1,4 @@
-from user import User
+from client.user import User
 
 def init_create_user():
     user = User(None)

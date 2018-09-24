@@ -1,6 +1,12 @@
 class MockKeyManager():
+    def __init__(self, file='keys.db'):
+        return 
+
+    def setup(self):
+        return self
+
     def generate(self):
-        return "fake_key"
+        return "fake_address"
 
     def set_nonce(self, address, network_id, nonce):
         return {

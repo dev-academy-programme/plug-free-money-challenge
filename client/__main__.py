@@ -1,10 +1,10 @@
 import click
 import asyncio
 
-from create_user import init_create_user
-from balance_query import init_balance_query
-from free_money_client import init_free_money
-from transaction import init_transaction
+from commands.create_user import init_create_user
+from commands.balance_query import init_balance_query
+from commands.free_money_client import init_free_money
+from commands.transaction import init_transaction
 
 from api_client import get_api_client
 

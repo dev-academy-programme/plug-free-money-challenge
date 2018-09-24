@@ -2,7 +2,7 @@ import pytest
 
 from client.user import User
 from key_manager import MockKeyManager
-from api_client import MockApiClient
+from mocks.api_client import MockApiClient
 
 def test_new_user_properties():
     """ARRANGE"""

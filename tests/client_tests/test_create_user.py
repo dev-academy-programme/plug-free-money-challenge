@@ -1,12 +1,13 @@
 import pytest
 
-from client.create_user import init_create_user
-from user import get_mock_user
+from mocks.api_client import MockApiClient
+from mocks.key_manager import MockKeyManager
+from client.commands.create_user import init_create_user
 
-def test_create_user_init_():
-    expected_address = "fake_address"
-    expected_type = type(get_mock_user())
+def test_create_user_init_(mocker):
+    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
+    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
 
     user = init_create_user()
-    assert type(user) is expected_type
-    assert user.address == expected_address
+    assert user.address == 'fake_address'
+    assert user.network_id == 'fake_network_id'

@@ -1,7 +1,7 @@
 import pytest
 from pytest_mock import mocker
 
-from api_client import MockApiClient
+from mocks.api_client import MockApiClient
 from free_money.transform import BalanceTransfer
 
 from client.transaction import init_transaction

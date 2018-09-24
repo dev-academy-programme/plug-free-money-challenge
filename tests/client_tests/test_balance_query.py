@@ -1,7 +1,7 @@
 import pytest
 from pytest_mock import mocker
 
-from api_client import MockApiClient
+from mocks.api_client import MockApiClient
 from free_money.model import BalanceModel
 
 from client.balance_query import init_balance_query
