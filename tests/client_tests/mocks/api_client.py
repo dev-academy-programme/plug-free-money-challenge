@@ -1,6 +1,6 @@
 
 class MockApiClient():
-    def __init__(self, url, key_manager):
+    def __init__(self, url='test', key_manager=None):
         self.network_id = "fake_network_id"
         return
 

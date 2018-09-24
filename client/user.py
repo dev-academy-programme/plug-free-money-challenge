@@ -4,9 +4,9 @@ from client.key_manager import get_key_manager
 class User:
 
     def __init__(self, address):
-        client = get_api_client()
+        self.client = get_api_client()
         self.key_manager = get_key_manager()
-        self.network_id = client.network_id
+        self.network_id = self.client.network_id
 
         if (address):
             self.address = address

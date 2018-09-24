@@ -4,7 +4,7 @@ from pytest_mock import mocker
 from mocks.api_client import MockApiClient
 from free_money.model import BalanceModel
 
-from client.balance_query import init_balance_query
+from client.commands.balance_query import init_balance_query
 
 def test_free_money_request_success(mocker):
     fake_address = "fake-address"

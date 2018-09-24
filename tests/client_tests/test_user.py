@@ -1,13 +1,15 @@
 import pytest
 
 from client.user import User
-from key_manager import MockKeyManager
+from mocks.key_manager import MockKeyManager
 from mocks.api_client import MockApiClient
 
-def test_new_user_properties():
+def test_new_user_properties(mocker):
     """ARRANGE"""
-    expected_address = "fake_key"
+    expected_address = "fake_address"
     expected_network_id = "fake_network_id"
+    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
+    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
 
     """ACT"""
     user = User(None)
@@ -18,10 +20,12 @@ def test_new_user_properties():
     assert type(user.key_manager) is MockKeyManager
     assert type(user.client) is MockApiClient
 
-def test_existing_user_properties():
+def test_existing_user_properties(mocker):
     """ARRANGE"""
     existing_address = "fake_key"
     expected_network_id = "fake_network_id"
+    mocker.patch('client.api_client.PlugApiClient', MockApiClient)
+    mocker.patch('client.key_manager.SqliteKeyManager', MockKeyManager)
 
     """ACT"""
     user = User(existing_address)

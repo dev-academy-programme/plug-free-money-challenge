@@ -4,11 +4,11 @@ from pytest_mock import mocker
 from mocks.api_client import MockApiClient
 from free_money.transform import FreeMoney
 
-from client.free_money_client import init_free_money
+from client.commands.free_money_client import init_free_money
 
 def test_free_money_request_success(mocker):
     fake_address = "fake-address"
-    amount = 100
+    amount = 10
     client = MockApiClient()
 
     mocker.spy(client, 'broadcast_transform')

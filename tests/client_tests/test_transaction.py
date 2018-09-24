@@ -4,7 +4,7 @@ from pytest_mock import mocker
 from mocks.api_client import MockApiClient
 from free_money.transform import BalanceTransfer
 
-from client.transaction import init_transaction
+from client.commands.transaction import init_transaction
 
 def test_transaction_request_success(mocker):
     sender_address = "fake-sender"
