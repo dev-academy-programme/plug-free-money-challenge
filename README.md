@@ -122,7 +122,7 @@ So naturally, in classic programmer style, we're going to destroy most of the co
 
 If you haven't already, head over to this page on the [Plug API Client](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/plug/api-client.md) and follow the setup instructions.
 
-The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
+The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [the free money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
 
 #### Where to from here?
 
