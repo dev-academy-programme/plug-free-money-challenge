@@ -7,6 +7,8 @@ version = "0.0.1"
 install_requires = (
 )
 
+# tests_require = ["pytest"]
+
 setuptools.setup(
     name="free_money",
     version=version,
@@ -15,6 +17,7 @@ setuptools.setup(
     url="https://github.com/free_money",
     packages=["free_money"],
     install_requires=install_requires,
+    setup_requires=["pytest-runner"],
 
     extras_require={
         "test": (
@@ -33,3 +36,7 @@ setuptools.setup(
         ),
     },
 )
+
+# setup_requires=["pytest-runner"],
+# test_suite="tests",
+# tests_require=tests_require,
