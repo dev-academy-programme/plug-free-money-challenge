@@ -1,8 +1,8 @@
 # Plug Free Money Challenge
 
-Welcome to the Free Money Challenge! For an introduction to the project, check out this [overview](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-overview.md).
+Welcome to the Free Money Challenge! For an introduction to the project, check out this [overview](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/challenges/free-money-overview.md).
 
-If you get drastically stuck at any point, you can also consult this [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
+If you get drastically stuck at any point, you can also consult this [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/challenges/free-money-solution.md)
 
 ## OBJECTIVES
 
@@ -57,7 +57,7 @@ Remember to keep a record of the new User key. You will need these later! We'll 
 
 #### Step Two: Writing the BalanceTransfer transform.
 
-It's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_, or check out the [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md).
+It's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_, or check out the [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/challenges/free-money-solution.md).
 
 The real logic takes place in the `verify()` and `apply()` methods. In `verify()`, you need to make sure that the sender actually _has_ a sufficient balance to cover the transfer, and then in `apply()` you will alter the user balances.
 
@@ -114,7 +114,7 @@ Over in `free_money/__init.py__` _add your new FreeMoney transform to this list_
 
 Head over to `client/free_money_client.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have the `address_input` and `amount` arguments to pass into our transform.
 
-Writing the client is probably the most challenging part of this exercise. If you're stuck, now is the right time to check out the sample solutions over at [the solution walkthrough.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md).
+Writing the client is probably the most challenging part of this exercise. If you're stuck, now is the right time to check out the sample solutions over at [the solution walkthrough.](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/challenges/free-money-solution.md).
 
 Once again, un-skip the free money tests and run `python setup.py test`. Everything should now be going according to plan.
 
@@ -131,9 +131,9 @@ You have successfully written a Transform that gives unlimited, free money to a 
 The Plug API Client is a library for sending requests to Plug nodes via the HTTP API. It provides several classes to make interacting with the nodes faster, and helps with local storage of signing keys, addresses and nonces.
 So naturally, in classic programmer style, we're going to destroy most of the code you just wrote and start again.
 
-If you haven't already, head over to this page on the [Plug API Client](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/plug/api-client.md) and follow the setup instructions.
+If you haven't already, head over to this page on the [Plug API Client](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/plug/api-client.md) and follow the setup instructions.
 
-The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [the end of the free money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
+The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [the end of the free money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/staging/segments/challenges/free-money-solution.md)
 
 #### Congratulations again!
 
