@@ -41,11 +41,12 @@ If you get drastically stuck at any point, you can also consult this [Free Money
 
 ```
 
-1. You can run the tests with `python setup.py test`
-
 ### OBJECTIVE: CREATE A BALANCE TRANSFER TRANSFORM
 
 We're going to write a new BalanceTransfer class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
+
+#### Step Zero: Uncommenting the tests.
+You can run the tests with `python setup.py test` from the root directory of the project. They're all being skipped for now. Start by reading around inside the tests directory and get a sense of what they're doing. Each test function currently has `@pytest.mark.skip()` above it. Try un-skipping the tests and see what happens. Which ones are failing?
 
 #### Step One: Generating another User.
 
@@ -75,6 +76,8 @@ free_money.transform.BalanceTransfer,
 #### Step Four: Transfer some Balance!
 
 From the root of your project, run the `python client transaction` command and follow the prompts. If everything went according to plan, you should now be able to run `python client balance_query` on your users and see the balance has transferred successfully.
+
+To make sure of this, un-skip the appropriate tests and run `python setup.py test`. The functions for balance transfer should now be passing!
 
 ### OBJECTIVE: CREATE A FREE MONEY TRANSFORM
 
@@ -112,6 +115,8 @@ Over in `free_money/__init.py__` _add your new FreeMoney transform to this list_
 Head over to `client/free_money_client.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have the `address_input` and `amount` arguments to pass into our transform.
 
 Writing the client is probably the most challenging part of this exercise. If you're stuck, now is the right time to check out the sample solutions over at [the solution walkthrough.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md).
+
+Once again, un-skip the free money tests and run `python setup.py test`. Everything should now be going according to plan.
 
 #### Step Five: Give some free money.
 
