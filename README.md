@@ -56,13 +56,13 @@ Remember to keep a record of the new User key. You will need these later! We'll 
 
 #### Step Two: Writing the BalanceTransfer transform.
 
-It's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_.
+It's time to head over to `transform.py`. Define a new `BalanceTransfer` class that extends Transform, and fill in the required methods. If you get stuck, remember to _consult the Plug documentation on writing Transforms_, or check out the [Free Money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md).
 
 The real logic takes place in the `verify()` and `apply()` methods. In `verify()`, you need to make sure that the sender actually _has_ a sufficient balance to cover the transfer, and then in `apply()` you will alter the user balances.
 
 #### Step Three: Add the BalanceTransfer class to your components array.
 
-Back in `__init.py__` you must _add your new transform to the component list_:
+Back in `free_money/__init.py__`, you must _add your new transform to the component list_:
 
 ```
 components = [
@@ -86,7 +86,7 @@ All users are created equal in this blockchain. When a new User is added, they r
 
 #### Step Two: Writing the FreeMoney transform.
 
-Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, and has several required methods to work correctly. *Check out the plug documentation for a reference on writing Transforms.*
+Now it's time to write the FreeMoney class in `transform.py`. This class extends Transform, it requires all the same methods as BalanceTransfer to work correctly. *Read the plug documentation for a reference on writing Transforms.*
 
 This is actually a very simple transform. Essentially there are only two things you need to check for. In the `verify()` method, you need to _verify_ that the amount you are trying to add to the User's balance is _greater than 0._
 
@@ -96,7 +96,7 @@ You still need to flesh out the other required methods too, but they are fairly 
 
 #### Step Three: Add the FreeMoney transform to your components array.
 
-Over in `__init.py__` _add your new FreeMoney transform to this list_:
+Over in `free_money/__init.py__` _add your new FreeMoney transform to this list_:
 
 ```
   components = [
@@ -109,7 +109,9 @@ Over in `__init.py__` _add your new FreeMoney transform to this list_:
 
 #### Step Four: Writing the FreeMoney client.
 
-Head over to `free_money.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have the `address_input` and `amount` arguments to pass into our transform.
+Head over to `client/free_money_client.py`. The first step here is going to be getting a reference to your desired user object. Luckily, because this script is going to be triggered by user input on the command line, we have the `address_input` and `amount` arguments to pass into our transform.
+
+Writing the client is probably the most challenging part of this exercise. If you're stuck, now is the right time to check out the sample solutions over at [the solution walkthrough.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md).
 
 #### Step Five: Give some free money.
 
@@ -117,7 +119,7 @@ Try running `python client free_money` from your root directory; you should rece
 
 #### Congratulations!
 
-You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented for financial reasons._
+You have successfully written a Transform that gives unlimited, free money to a specific User in the blockchain. Please note; _it is unlikely that your employer will ever request that this specific feature be implemented in your product for obvious financial reasons._
 
 #### Step Six: Integrate the Plug api_client.
 
@@ -126,7 +128,11 @@ So naturally, in classic programmer style, we're going to destroy most of the co
 
 If you haven't already, head over to this page on the [Plug API Client](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/plug/api-client.md) and follow the setup instructions.
 
-The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [the free money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
+The real trick here is integrating `broadcast_transform` into your client code. Once you have done that, all of your scripts can be extremely slim and elegant. If you get stuck at any point, don't forget to head over to [the end of the free money solution walkthrough for help.](https://github.com/dev-academy-programme/plug-resources/blob/free-money-overview/segments/challenges/free-money-solution.md)
+
+#### Congratulations again!
+
+You have successfully integrated the plug api-client into your project!
 
 #### Where to from here?
 
