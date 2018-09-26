@@ -3,11 +3,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[dev-packages]
-
 [packages]
-balance_tutorial = {editable = true, path = "."}
-plug = {git = " *YOUR_PATH_TO_PLUG* /plug/blob/master/libs/plug-0.0.20.tar.gz"}
+free_money = {editable = true, path = "."}
+plug = {git = "*YOUR_PATH_TO_PLUG*/plug-0.0.20.tar.gz"}
+plug_api = {path = "*YO?UR_PATH_TO_PLUG*/plug-api-1.6.1.tar.gz"}
+
+[dev-packages]
+mock = "*"
+pytest = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.7"
