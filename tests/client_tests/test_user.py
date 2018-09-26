@@ -4,6 +4,7 @@ from client.user import User
 from mocks.key_manager import MockKeyManager
 from mocks.api_client import MockApiClient
 
+@pytest.mark.skip()
 def test_new_user_properties(mocker):
     """ARRANGE"""
     expected_address = "fake_address"
@@ -20,6 +21,7 @@ def test_new_user_properties(mocker):
     assert type(user.key_manager) is MockKeyManager
     assert type(user.client) is MockApiClient
 
+@pytest.mark.skip()
 def test_existing_user_properties(mocker):
     """ARRANGE"""
     existing_address = "fake_key"

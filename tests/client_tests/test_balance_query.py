@@ -6,6 +6,7 @@ from free_money.model import BalanceModel
 
 from client.commands.balance_query import init_balance_query
 
+@pytest.mark.skip()
 def test_free_money_request_success(mocker):
     fake_address = "fake-address"
     client = MockApiClient()
