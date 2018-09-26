@@ -39,4 +39,4 @@ class BalanceTransfer(Transform):
 
 @dataclass
 class FreeMoney(Transform):
-    print("place_holder!")
+    print("Welcome to the Free Money challenge!")
