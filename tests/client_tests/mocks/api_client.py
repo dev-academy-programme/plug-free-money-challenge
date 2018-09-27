@@ -9,7 +9,7 @@ class MockApiClient():
     def broadcast_transform(self, transform):
         return transform
 
-    def get_model_instance(self, model, key, height):
+    async def get_model_instance(self, model, key, height):
         return {
             "balance":100,
         }
