@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 free_money = {editable = true, path = "."}
-plug = {git = "*YOUR_PATH_TO_PLUG*/plug-0.0.20.tar.gz"}
-plug_api = {path = "*YO?UR_PATH_TO_PLUG*/plug-api-1.6.1.tar.gz"}
+plug-framework = {path = "*YOUR_PATH_TO_PLUG*/plug_framework-0.0.24-py3-none-any.whl"}
+plug_api = {path = "*YOUR_PATH_TO_PLUG*/plug-api-2.0.1.tar.gz"}
 
 [dev-packages]
 mock = "*"
