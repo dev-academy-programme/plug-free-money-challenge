@@ -19,7 +19,9 @@ If you get drastically stuck at any point, you can also consult this [Free Money
 
 1. Run `pipenv install ../plug/libs/plug-0.0.21.tar.gz`, with the correct path to your local copy of the plug repository.
 
-1. Do the same for `pipenv install ../plug/libs/plug-api-2.0.1.tar.gz`.
+1. Do the same for `pipenv install ../plug/libs/plug_framework-0.0.24-py3-none-any.whl`.
+
+1. And again for `pipenv install ../plug/libs/plug-api-2.0.1.tar.gz`.
 
 1. Run `pipenv install -e .` to make sure everything you need is installed.
 
