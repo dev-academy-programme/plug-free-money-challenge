@@ -11,6 +11,6 @@ import aiohttp
 import json
 import asyncio
 
-async def init_free_money(signing_key_input):
+async def init_free_money(client, input_key, amount):
 
     print("Free Money!")
