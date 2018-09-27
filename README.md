@@ -17,9 +17,9 @@ If you get drastically stuck at any point, you can also consult this [Free Money
 1. Navigate into the `plug-intro` repository and enter the pip shell using the `pipenv shell` command.
 **Note: You must have pip, pipenv and python (v 3.6 or higher).**
 
-1. Run `pipenv install ../plug/libs/plug-0.0.20.tar.gz`, with the correct path to your local copy of the plug repository.
+1. Run `pipenv install ../plug/libs/plug-0.0.21.tar.gz`, with the correct path to your local copy of the plug repository.
 
-1. Do the same for `pipenv install ../plug/libs/plug-api-1.6.1.tar.gz`.
+1. Do the same for `pipenv install ../plug/libs/plug-api-2.0.1.tar.gz`.
 
 1. Run `pipenv install -e .` to make sure everything you need is installed.
 
