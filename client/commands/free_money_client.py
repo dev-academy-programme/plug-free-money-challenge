@@ -4,7 +4,7 @@ from client.user import User
 
 from asyncio import get_event_loop
 
-async def init_free_money(client, address_input, amount):
+def init_free_money(client, address_input, amount):
     register_transform_event(FreeMoney)
 
     loop = get_event_loop()

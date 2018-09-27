@@ -13,6 +13,8 @@ class FreeMoneyPlugin(Plugin):
             free_money.error.NotEnoughMoneyError,
             free_money.error.InvalidAmountError,
             free_money.model.BalanceModel,
+            free_money.transform.FreeMoney,
+            free_money.transform.BalanceTransfer,
         ]
 
         for component in components:
