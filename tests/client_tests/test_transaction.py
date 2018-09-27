@@ -6,7 +6,6 @@ from free_money.transform import BalanceTransfer
 
 from client.commands.transaction import init_transaction
 
-@pytest.mark.skip()
 def test_transaction_request_success(mocker):
     sender_address = "fake-sender"
     receiver_address = "fake-receiver"

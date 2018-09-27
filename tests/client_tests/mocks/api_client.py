@@ -6,7 +6,7 @@ class MockApiClient():
     async def get_network_id(self):
         return "fake_network_id"
 
-    def broadcast_transform(self, transform):
+    async def broadcast_transform(self, transform):
         return transform
 
     async def get_model_instance(self, model, key, height):
