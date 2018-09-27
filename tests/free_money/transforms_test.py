@@ -11,7 +11,6 @@ from free_money.model import BalanceModel
 from free_money.transform import FreeMoney, BalanceTransfer
 from free_money.error import InvalidAmountError, NotEnoughMoneyError
 
-@pytest.mark.skip()
 def test_balance_transfer_success(
         dapp_registry: Registry,
         key_manager: KeyManager,
@@ -64,7 +63,6 @@ def test_balance_transfer_success(
     assert the_receiver.balance == receiver_initial_balance+send_amount
     assert the_sender.balance == sender_initial_balance-send_amount
 
-@pytest.mark.skip()
 def test_balance_transfer_zero_money_error(
         dapp_registry: Registry,
         key_manager: KeyManager,
@@ -118,7 +116,6 @@ def test_balance_transfer_zero_money_error(
     assert the_receiver.balance == receiver_initial_balance
     assert the_sender.balance == sender_initial_balance
 
-@pytest.mark.skip()
 def test_balance_transfer_not_enough_money_error(
         dapp_registry: Registry,
         key_manager: KeyManager,
@@ -172,7 +169,6 @@ def test_balance_transfer_not_enough_money_error(
     assert the_receiver.balance == receiver_initial_balance
     assert the_sender.balance == sender_initial_balance
 
-@pytest.mark.skip()
 def test_free_money_success(
         dapp_registry: Registry,
         key_manager: KeyManager,
@@ -228,5 +224,3 @@ def test_negative_free_money_error(
     """
     ASSERT
     """
-
-

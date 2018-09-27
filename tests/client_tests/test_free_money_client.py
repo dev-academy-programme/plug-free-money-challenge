@@ -6,7 +6,6 @@ from free_money.transform import FreeMoney
 
 from client.commands.free_money_client import init_free_money
 
-@pytest.mark.skip()
 def test_free_money_request_success(mocker):
     fake_address = "fake-address"
     amount = 10
