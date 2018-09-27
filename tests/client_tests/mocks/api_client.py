@@ -1,11 +1,14 @@
 
 class MockApiClient():
     def __init__(self, url='test', key_manager=None):
-        self.network_id = "fake_network_id"
         return
+
+    async def get_network_id(self):
+        return "fake_network_id"
 
     def broadcast_transform(self, transform):
         return transform
+
     def get_model_instance(self, model, key, height):
         return {
             "balance":100,
