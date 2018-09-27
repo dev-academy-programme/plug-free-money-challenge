@@ -212,41 +212,21 @@ def test_free_money_success(
     assert the_receiver.balance == receiver_initial_balance+free_money_amount
 
 @pytest.mark.skip()
-def test_free_zero_money_error(
+def test_negative_free_money_error(
         dapp_registry: Registry,
         key_manager: KeyManager,
 ):
+    #how would you test that the free money transform generates an error if negative money is requested?
     """
     ARRANGE
     """
-    receiver_address = key_manager.generate()
-    receiver_initial_balance=100
-    free_money_amount = 0
-    what_is_this_id = str(uuid4())
-
-    transform = FreeMoney(
-        receiver=receiver_address,
-        amount=free_money_amount,
-    )
-
-    # Initialize the environment.
-    state = create_state(dapp_registry)
-
-    balance_state = state[BalanceModel.fqdn]
-
-    balance_state[receiver_address] = BalanceModel(
-        balance=receiver_initial_balance
-    )
 
     """
     ACT
     """
-    with pytest.raises(InvalidAmountError):
-        execute_transform(transform, state)
-
-    the_receiver: BalanceModel = balance_state[receiver_address]
 
     """
     ASSERT
     """
-    assert the_receiver.balance == receiver_initial_balance
+
+

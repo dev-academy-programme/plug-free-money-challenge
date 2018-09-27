@@ -2,7 +2,6 @@ import pytest
 
 from free_money.model import BalanceModel
 
-@pytest.mark.skip()
 def test_balance_model_initial_balance():
     """ARRANGE"""
     expected_balance = 0
@@ -13,7 +12,6 @@ def test_balance_model_initial_balance():
     """ASSERT"""
     assert model.balance == expected_balance
 
-@pytest.mark.skip()
 def test_balance_model_set_balance():
     """ARRANGE"""
     balance = 100
