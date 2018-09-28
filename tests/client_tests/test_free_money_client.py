@@ -20,8 +20,3 @@ def test_free_money_request_success(mocker):
     assert type(broadcasted_transform) is FreeMoney
     assert broadcasted_transform.amount == amount
     assert broadcasted_transform.receiver == fake_address
-
-@pytest.mark.skip()
-def test_free_money_unsigned(mocker):
-    #how would you test the behaviour if someone tried to request free money for an account that didn't exist?
-    return
