@@ -4,8 +4,11 @@ nodes/*
 nodes/
 *.benchmark
 plug/dashboard/config.json
+<<<<<<< HEAD
 
 Pipfile.lock
+=======
+>>>>>>> staging
 
 ### Linux ###
 *~
