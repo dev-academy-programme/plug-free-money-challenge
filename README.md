@@ -12,16 +12,15 @@ If you get drastically stuck at any point, you can also consult this [Free Money
 
 ### SETUP
 
-1. Clone down the `plug-intro` repository into your workspace folder.
+1. Clone down the `plug-free-money-challenge` repository into your workspace folder.
 
-1. Navigate into the `plug-intro` repository and enter the pip shell using the `pipenv shell` command.
+1. Next, clone down the [plug-libs repository](https://github.com/dev-academy-programme/plug-libs).
+Note: this repository must be cloned down into the same directory as the `plug-free-money-challenge`, IE, your workspace folder.
+
+1. Navigate into the `plug-free-money-challenge` repository and enter the pip shell using the `pipenv shell` command.
 **Note: You must have pip, pipenv and python (v 3.6 or higher).**
 
-1. Run `pipenv install plug_framework-0.0.24-py3-none-any.whl`, with the correct path to your local copy of the plug repository.
-
-1. And again for `pipenv install ../plug/libs/plug-api-2.0.1.tar.gz`.
-
-1. Run `pipenv install -e .` to make sure everything you need is installed.
+1. Run `pipenv install` to install the plug-libs into your project.
 
 1. If your installation went according to plan, you should be able to run `plug-dev create-network -n1 node.yaml -d ./nodes` which will automatically create a `/nodes` directory with a `node_0` directory inside it.
 
