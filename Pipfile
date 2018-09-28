@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-plug-framework = {path = "../plug-libs/plug_framework-0.0.24-py3-none-any.whl"}
-"9bbdfd2" = {path = "../plug-libs/plug-api-2.0.1.tar.gz"}
 free-money = {editable = true, path = "."}
+plug-framework = {path = "./../plug-libs/plug_framework-0.0.24-py3-none-any.whl"}
+plug-api = {path = "./../plug-libs/plug-api-2.0.1.tar.gz"}
 
 [dev-packages]
 
