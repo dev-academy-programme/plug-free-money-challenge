@@ -45,7 +45,7 @@ Note: this repository must be cloned down into the same directory as the `plug-f
 We're going to write a new BalanceTransfer class that extends Transform. This transform will be able to transfer money from the balance of one user to another.
 
 #### Step Zero: Uncommenting the tests.
-You can run the tests with `python setup.py test` from the root directory of the project. They're all being skipped for now. Start by reading around inside the tests directory and get a sense of what they're doing. Each test function currently has `@pytest.mark.skip()` above it. Try un-skipping the tests and see what happens. Which ones are failing?
+You can run the tests with `python setup.py test` from the root directory of the project. Most will be passing, but there are some that are skipped and will fail until you write the code to complete this challenge. Start by reading around inside the tests directory and get a sense of what they're doing. Each skipped test currently has `@pytest.mark.skip()` above it. Try un-skipping the tests and see what happens. 
 
 #### Step One: Generating another User.
 
