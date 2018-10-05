@@ -9,6 +9,8 @@ plug-framework = {path = "../plug-libs/plug_framework-0.0.24-py3-none-any.whl"}
 plug-api = {path = "../plug-libs/plug-api-2.0.1.tar.gz"}
 
 [dev-packages]
+pytest = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.7"
