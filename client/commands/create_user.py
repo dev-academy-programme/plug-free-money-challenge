@@ -5,5 +5,4 @@ def init_create_user():
     print()
     print("address/key:", user.address)
     print()
-    print("Keep it secret, keep it safe")
     return user
